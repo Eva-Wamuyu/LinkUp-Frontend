@@ -1,0 +1,22 @@
+.disclaimer, a:hover{
+  border-left: 4px solid var(--bright-orange);
+  background-color: var(--faint-orange);
+
+}
+
+
+@media screen and (min-width: 768px){
+  .following-div{
+    width: 80%;
+    margin-left: 18%;
+    height: fit-content;
+  }
+  .flex-users{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .flex-users>div{
+    width: 50%;
+  }
+
+}

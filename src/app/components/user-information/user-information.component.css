@@ -1,0 +1,47 @@
+.top-div{
+    background-color: var(--faint-orange);
+    height: fit-content;
+}
+.img{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+
+}
+nav{
+  background-color: var(--grayish);
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+nav p{
+  cursor: pointer;
+}
+.info{
+  background-color: var(--faint-orange);
+
+}
+.about{
+  position: static;
+}
+.pin{
+  position: absolute;
+  right: 10%;
+
+}
+.bio{
+  background-color: var(--faint-orange);
+  height: fit-content;
+}
+.active{
+  color: red;
+ border-bottom: 1px solid var(--bright-orange);
+}
+@media screen and (min-width: 768px){
+  .user-info-div{
+    width: 80%;
+    margin-left: 18%;
+    height: fit-content;
+  }
+
+}

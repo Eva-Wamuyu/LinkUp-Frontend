@@ -1,0 +1,83 @@
+<nav class="flex-container nav w3-margin-bottom">
+    <img (click)="toggleMenu()" class="icon" src="./assets/iconnny.png" alt="linkup-icon">
+  <p class="primary-text">
+    LinkUp
+  </p>
+
+  <form class="small-screen-hidden" action="">
+    <input placeholder="Search ..." type="text">
+  </form>
+
+  <p>
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="currentColor" d="M235.54 150.21a104.84 104.84 0 0 1-37 52.91A104 104 0 0 1 32 120a103.09 103.09 0 0 1 20.88-62.52a104.84 104.84 0 0 1 52.91-37a8 8 0 0 1 10 10a88.08 88.08 0 0 0 109.8 109.8a8 8 0 0 1 10 10Z"/></svg>
+  </p>
+</nav>
+
+<div class="side-menu" *ngIf="sideMenuOpen">
+ <div class="top-side">
+  <img class="side-icon" src="https://wallpaperaccess.com/full/22728.jpg" alt="linkup-icon">
+  <p class="ml-72">
+    Harley Quinn
+  </p>
+ </div>
+
+  <ul class="mt-3">
+
+    <li>
+    <a routerLink="/home" routerLinkActive="active">       <svg class="icon-home" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7H4Z"/></svg> Home</a>
+    </li>
+    <li>
+      <a > <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3 21V3h18v18H3Zm15-4H6v1.5h12V17ZM6 15.5h12V14H6v1.5ZM6 12h12V6H6v6Zm0 5v1.5V17Zm0-1.5V14v1.5ZM6 12V6v6Zm0 2v-2v2Zm0 3v-1.5V17Z"/></svg> Your Posts</a>
+    </li>
+    <li>
+      <a routerLink="/people/following" routerLinkActive="active" > <span>69</span> Following</a>
+    </li>
+    <li>
+      <a routerLink="/people/followes" routerLinkActive="active"> <span>420</span> Followers</a>
+    </li>
+    <li>
+      <a routerLink="/users/connect" routerLinkActive="active"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"/></svg> Connect</a>
+    </li>
+    <li>
+      <a routerLink="/settings/profile" routerLinkActive="active">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linejoin="round" d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="7" r="3"/></g></svg>
+        Profile
+        </a>
+    </li>
+  </ul>
+
+
+   <p class="log-out flex">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m17 8l-1.4 1.4l1.6 1.6H9v2h8.2l-1.6 1.6L17 16l4-4l-4-4M5 5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h7v-2H5V5Z"/></svg>
+    Log Out
+   </p>
+
+</div>
+<div class="backdrop" (click)="closeSideMenu()" *ngIf="sideMenuOpen"></div>
+
+<div class="small-circle">
+
+</div>
+
+
+<div class="big-screen">
+  <div class="big-screen-jnr mb-12 p-6">
+    <h1 class="text-center primary-text">LinkUp</h1>
+    <p class="text-center">
+      Your Place To Share Whats in Your Mind.
+    </p>
+    <p class="text-center mt-8">
+      <b>
+        Keeping it the telegraphic way- less words matter
+      </b>
+    </p>
+  </div>
+
+  <div class="circle flex justify-center items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-0.5 -0.5 24 24"><path fill="currentColor" d="m21.289.98l.59.59c.813.814.69 2.257-.277 3.223L9.435 16.96l-3.942 1.442c-.495.182-.977-.054-1.075-.525a.928.928 0 0 1 .045-.51l1.47-3.976L18.066 1.257c.967-.966 2.41-1.09 3.223-.276zM8.904 2.19a1 1 0 1 1 0 2h-4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4a1 1 0 0 1 2 0v4a4 4 0 0 1-4 4h-12a4 4 0 0 1-4-4v-12a4 4 0 0 1 4-4h4z"/></svg>
+  </div>
+</div>
+
+
+
+

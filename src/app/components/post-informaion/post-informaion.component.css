@@ -1,0 +1,17 @@
+
+.comment-container, .child-comment-container{
+  border-left: 2px solid var(--faint-orange);
+}
+.user-info{
+  width: fit-content;;
+}
+@media screen and (min-width: 768px){
+  .post-div{
+    width: 80%;
+    margin-left: 18%;
+    height: fit-content;
+  }
+
+}
+
+

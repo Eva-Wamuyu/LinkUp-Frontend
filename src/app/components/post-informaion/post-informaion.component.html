@@ -1,0 +1,112 @@
+<app-nav></app-nav>
+
+<div class="big-container">
+<app-post [useRouterLink]="false" [post]="post"></app-post>
+
+<!-- <div *ngFor="let post of comments_list" class="comments-container">
+    <app-post [post]="post"></app-post>
+ </div> -->
+
+
+<div class="post-div">
+
+  <h2 class="text-left primary-text">Replies</h2>
+ <div *ngFor="let comment of comments_list" class="comment-container ml-5 p-2 mt-4">
+
+  <a [routerLink]="['/user', post.username]">
+      <div class="user-info d-flex flex-left font-bold">
+        <img class="default-icon" src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQ7xetZazndXzsY-Wos8xN576trcmTX8gHc3wunT8NOh6a03Svy2LrQhrMvV7NVzbEkyXliR9pSMbuwO_4" alt="">
+       <p class="ml-4">
+        <b>{{post.username}}</b>
+        <br>
+        <b>
+        <span>
+          {{post.time}}
+        </span>
+        <span>
+          1730hrs
+        </span>
+        </b>
+      </p>
+      </div>
+  </a>
+    <div>
+      <p class="w3-margin-top">
+          {{comment.content}}
+      </p>
+      <div class="d-flex flex-left mt-6 mx-4">
+        <p class="flex">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 20H9v-8H4.16L12 4.16L19.84 12H15v8Z"/></svg>
+          <span>
+            {{post.likes}}
+          </span>
+        </p>
+        <p class="flex">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path fill="currentColor" d="M1.5 0C.671 0 0 .67 0 1.5v8.993c0 .83.671 1.5 1.5 1.5h3.732l1.852 2.775a.5.5 0 0 0 .832 0l1.851-2.775H13.5c.829 0 1.5-.67 1.5-1.5V1.5c0-.83-.671-1.5-1.5-1.5h-12Z"/></svg>v
+          <span>
+            {{post.comments}}
+          </span>
+        </p>
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 9V7.41c0-.89-1.08-1.34-1.71-.71L3.7 11.29a.996.996 0 0 0 0 1.41l4.59 4.59c.63.63 1.71.19 1.71-.7V14.9c5 0 8.5 1.6 11 5.1c-1-5-4-10-11-11z"/></svg>
+        </p>
+
+      </div>
+
+
+      <div  class="child-comment-container ml-8 p-4" *ngIf="comment.child_comments">
+        <div *ngFor="let comment of comment.child_comments">
+        <div class="user-info d-flex flex-left font-bold">
+          <img class="default-icon" src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQ7xetZazndXzsY-Wos8xN576trcmTX8gHc3wunT8NOh6a03Svy2LrQhrMvV7NVzbEkyXliR9pSMbuwO_4" alt="">
+         <p>
+          <b>{{post.username}}</b>
+          <br>
+          <b>
+          <span>
+            {{post.time}}
+          </span>
+          <span>
+            1730hrs
+          </span>
+          </b>
+        </p>
+        </div>
+
+      <div>
+        <p class="w3-margin-top">
+            {{comment.content}}
+        </p>
+        <div class="d-flex flex-left mt-6 mx-4">
+          <p class="flex">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 20H9v-8H4.16L12 4.16L19.84 12H15v8Z"/></svg>
+            <span>
+              {{post.likes}}
+            </span>
+          </p>
+          <p class="flex">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path fill="currentColor" d="M1.5 0C.671 0 0 .67 0 1.5v8.993c0 .83.671 1.5 1.5 1.5h3.732l1.852 2.775a.5.5 0 0 0 .832 0l1.851-2.775H13.5c.829 0 1.5-.67 1.5-1.5V1.5c0-.83-.671-1.5-1.5-1.5h-12Z"/></svg>
+            <span>
+              {{post.comments}}
+            </span>
+          </p>
+        </div>
+
+
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+</div>
+</div>
+
+
+
+<div class="reply-form">
+  <form action="">
+
+  </form>
+</div>
+
+

@@ -1,0 +1,44 @@
+<div class="m-container flex items-center">
+
+  <div>
+    <h1 class="primary-text text-center mt-8">LinkUp</h1>
+    <form class="form p-4 mt-8 py-8" [formGroup]="loginForm" (ngSubmit)="loginUser()">
+      <h2 class="text-center">Welcome Back</h2>
+      <p *ngIf="showmessage" class="p-4 primary-border-radius" [class]="className">
+        {{message}}
+      </p>
+      <div class="mt-8">
+        <label for="username">Username</label>
+        <br>
+        <input id="username" class="p-3 py-6" id="email" formControlName="username"/>
+      </div>
+
+      <div class="mt-8">
+        <label for="password">Password</label>
+        <br>
+        <input class="p-3 py-6" id="password" type="password" formControlName="password"/>
+      </div>
+
+      <div class="mt-8">
+        <button type="submit" class="primary-button py-3 mt-4">
+           Resume The Fun
+        </button>
+      </div>
+
+      <div class="text-center">
+        <p class="mt-8">
+          Want To Join The Fun?
+          <span class="primary-text underline">
+            <a routerLink="/register" routerLinkActive="active"> Create Account</a>
+          </span>
+        </p>
+
+        <p class="mt-8">
+          Guest Scroll?
+          <a routerLink="/home" routerLinkActive="active"> <i class="fa fa-home primary-text" aria-hidden="true"></i></a>
+        </p>
+      </div>
+    </form>
+
+  </div>
+</div>

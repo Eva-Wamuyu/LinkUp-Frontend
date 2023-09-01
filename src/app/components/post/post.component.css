@@ -1,0 +1,27 @@
+.post-img{
+  border-radius: var(--smooth-edges);
+  width: 100%;
+  height: auto;
+  margin: auto;
+}
+.img-container{
+   margin: auto;
+   height: auto;
+
+}
+.user-info{
+  width: 50%;
+}
+
+@media screen and (min-width: 768px){
+  .user-info{
+    width: 25%;
+  }
+  .post-div{
+    width: 80%;
+    margin-left: 18%;
+    height: fit-content;
+  }
+
+}
+

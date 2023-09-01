@@ -1,0 +1,40 @@
+<app-nav></app-nav>
+<div class="  m-container big-container">
+
+
+  <div class="following-div">
+
+
+  <p class="disclaimer p-4 mt-4">
+    Your Following List Is Only Visible To You
+  </p>
+
+  <div *ngIf="following.length == 0">
+
+    <div class="disclaimer mt-4 py-12 px-4 text-center">
+      <p>
+        Nothing To See Here
+      </p>
+      <p>
+        No Papparrazzis Yet
+      </p>
+    </div>
+
+  </div>
+
+  <div class="flex-users"  *ngIf="following.length > 0">
+  <div *ngFor="let user of following">
+
+    <a [routerLink]="['/user', user.username]">
+      <div class="d-flex flex-left px-8 py-4 mt-4 border-bottom grayish-background primary-border-radius">
+        <img class="default-icon" src="{{user.profile_img}}" alt="">
+        <p>
+          {{user.username}}
+        </p>
+      </div>
+    </a>
+  </div>
+  </div>
+
+</div>
+</div>

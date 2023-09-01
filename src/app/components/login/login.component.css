@@ -1,0 +1,27 @@
+input{
+  border: solid 1px var(--bright-orange);
+  outline: none;
+}
+input,button{
+  width: 95%;
+
+
+}
+
+input{
+  height: 36px;
+  font-size: 1.5rem;
+  border-radius: var(--smooth-edges);
+
+}
+.form{
+  background-color: var(--grayish);
+
+
+}
+.m-container>div{
+  width: 90vw;
+  margin: auto;
+
+}
+

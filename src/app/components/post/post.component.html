@@ -1,0 +1,57 @@
+
+<div class="m-container post-div pt-4 border-bottom">
+  <div class="">
+    <a [routerLink]="['/user', post.username]">
+    <div class="user-info d-flex flex-left font-bold">
+      <img class="default-icon" src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQ7xetZazndXzsY-Wos8xN576trcmTX8gHc3wunT8NOh6a03Svy2LrQhrMvV7NVzbEkyXliR9pSMbuwO_4" alt="">
+     <p>
+      <b>{{post.username}}</b>
+      <br>
+      <b>
+      <span>
+        {{post.time}}
+      </span>
+      <span>
+        1730hrs
+      </span>
+      </b>
+    </p>
+    </div>
+    </a>
+    <a *ngIf="useRouterLink" [routerLink]="['/post', post.post_id]">
+      <div>
+        <p class="w3-margin-top">
+          {{post.content}}
+        </p>
+        <div *ngIf="post.image_url" class="img-container">
+        <img class="post-img" src="{{post.image_url}}" alt="">
+        </div>
+      </div>
+    </a>
+    <div *ngIf="!useRouterLink">
+      <p class="w3-margin-top">
+        {{post.content}}
+      </p>
+      <div *ngIf="post.image_url" class="img-container">
+      <img class="post-img" src="{{post.image_url}}" alt="">
+      </div>
+    </div>
+    <div class="d-flex flex-left mt-6 mx-4">
+      <p class="flex">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 20H9v-8H4.16L12 4.16L19.84 12H15v8Z"/></svg>
+        <span>
+          {{post.likes}}
+        </span>
+      </p>
+      <p class="flex">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path fill="currentColor" d="M1.5 0C.671 0 0 .67 0 1.5v8.993c0 .83.671 1.5 1.5 1.5h3.732l1.852 2.775a.5.5 0 0 0 .832 0l1.851-2.775H13.5c.829 0 1.5-.67 1.5-1.5V1.5c0-.83-.671-1.5-1.5-1.5h-12Z"/></svg>v
+        <span>
+          {{post.comments}}
+        </span>
+      </p>
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 256 256"><path fill="currentColor" d="m232.49 112.49l-48 48a12 12 0 0 1-17-17L195 116h-30a84 84 0 0 0-81.36 63a12 12 0 1 1-23.24-6A107.94 107.94 0 0 1 165 92h30l-27.49-27.52a12 12 0 0 1 17-17l48 48a12 12 0 0 1-.02 17.01ZM192 204H44V88a12 12 0 0 0-24 0v120a20 20 0 0 0 20 20h152a12 12 0 0 0 0-24Z"/></svg>
+      </p>
+    </div>
+  </div>
+</div>
