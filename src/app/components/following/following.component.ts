@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-following',
@@ -8,8 +8,8 @@ import { ActivatedRoute } from '@angular/router';
   '../home/home.component.css']
 })
 export class FollowingComponent implements OnInit {
-
-  constructor(private route: ActivatedRoute) { }
+  message = '';
+  constructor(private route: ActivatedRoute,private router: Router) { }
 following =  [{"username":"kjimmison0","profile_img":"http://dummyimage.com/118x100.png/ff4444/ffffff","last_name":"Jimmison","email":"sjimmison0@ihg.com","gender":"Female","ip_address":"165.95.103.45"},
   {"username":"ccrosgrove1","profile_img":"http://dummyimage.com/233x100.png/ff4444/ffffff","last_name":"Crosgrove","email":"jcrosgrove1@dropbox.com","gender":"Genderfluid","ip_address":"222.108.190.121"},
   {"username":"hupcott2","profile_img":"http://dummyimage.com/139x100.png/5fa2dd/ffffff","last_name":"Upcott","email":"lupcott2@e-recht24.de","gender":"Male","ip_address":"62.80.6.202"},
@@ -64,6 +64,18 @@ following =  [{"username":"kjimmison0","profile_img":"http://dummyimage.com/118x
   ngOnInit(): void {
     let route_type = this.route.snapshot.paramMap.get('route_type') || "";
     console.log(route_type);
+
+    if (route_type !== 'following' && route_type !== 'followers') {
+
+      this.router.navigate(['/404']);
+    }
+    if (route_type === 'following'){
+      this.message = "following"
+    }
+    if (route_type === 'followers'){
+      this.message = "followers"
+    }
+
 
   }
 

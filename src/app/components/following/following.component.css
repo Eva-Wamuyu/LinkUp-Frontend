@@ -3,6 +3,9 @@
   background-color: var(--faint-orange);
 
 }
+.grayish-background:hover{
+  background-color: var(--faint-orange);
+}
 
 
 @media screen and (min-width: 768px){
@@ -16,7 +19,7 @@
     flex-wrap: wrap;
   }
   .flex-users>div{
-    width: 50%;
+    width: 45%;
   }
 
 }

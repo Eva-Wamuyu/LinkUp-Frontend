@@ -3,8 +3,15 @@
       width: 65vw;
       position: fixed;
       bottom: 0;
+      left: 10vw;
       overflow-y: auto;
       height: 90vh;
-      
+
+  }
+  .inner-div{
+    width: 80%;
+    margin-left: 18%;
+    height: fit-content;
   }
 }
+

@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { PostInformaionComponent } from './components/post-informaion/post-informaion.component';
 import { UserInformationComponent } from './components/user-information/user-information.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'auth/login', component: LoginComponent},
   {path: 'auth/register', component: RegisterComponent},
   {path: 'settings/profile', component: ProfileComponent},
+  {path: '**', component: NotfoundComponent},
 
 
 

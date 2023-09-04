@@ -1,0 +1,19 @@
+.scroll-horizontal{
+  overflow-x: auto;
+  white-space: nowrap;
+  border-radius: var(--smooth-edges);
+
+
+}
+.icon{
+  width: 200px ;
+  height: 200px ;
+  border-radius: 50%;
+}
+
+.user-card {
+  display: inline-block;
+  min-width: 300px;
+  background-color: var(--grayish);
+}
+

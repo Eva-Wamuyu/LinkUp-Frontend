@@ -9,5 +9,6 @@ export class PostComponent {
 
   @Input() post: any;
   @Input() useRouterLink: boolean = true;
+  @Input()  showButton: boolean = true;
 
 }

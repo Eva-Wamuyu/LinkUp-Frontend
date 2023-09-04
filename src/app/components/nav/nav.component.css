@@ -28,8 +28,8 @@
   width: 80%;
   padding: 36px;
   position: fixed;
-  top: 24px;
-  height: 95vh;
+  top: 8px;
+  height: 98vh;
   z-index: 2;
   transform: rotate(0deg);
   transition: transform 0.3s ease-in-out;
@@ -49,11 +49,7 @@
   height: 72px;
   border-radius: 50%;
 }
-.top-side{
-  display: flex;
-  text-align: center;
-  align-items: center;
-}
+
 
 .backdrop {
   position: fixed;
@@ -65,15 +61,19 @@
   z-index: 1;
   cursor: pointer;
 }
+.backdrop2{
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 3;
+}
 li a{
 
   display: flex;
 }
 .big-screen{
   height: 80vh;
-  width: 20vw;
+  width: 18vw;
   position: absolute;
-  right: 10%;
+  right: 5%;
   display: none;
 }
 .big-screen-jnr{
@@ -91,6 +91,34 @@ li a{
 .small-screen-hidden{
     display: none;
 }
+.side-2{
+   display: none;
+}
+.small-circle{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+.form{
+  width: 80vw;
+  margin: auto;
+  z-index: 4;
+  background-color: var(--white);
+  border-radius: var(--smooth-edges);
+  position: fixed;
+  bottom: 2vh;
+  left: 10vw;
+
+
+}
+textarea, input{
+  background-color: var(--grayish);
+  border-radius: var(--smooth-edges);
+  outline: none;
+  max-width: 100%;
+  resize: none;
+  font-size: 1.25rem;
+}
 @media screen and (min-width: 768px){
   .flex-container{
     width: 100vw;
@@ -107,7 +135,50 @@ li a{
   }
   .small-screen-hidden{
     display: block;
-}
+    background-color: var(--white);
+
+  }
+  .small-screen-hidden input{
+    border: none;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--bright-orange);
+  }
+  .side-menu{
+    display: block;
+    width: 16vw;
+    position: absolute;
+    left: 4%;
+    top: 12vh;
+    height: 80%;
+    padding: 0;
+  }
+  .hide{
+    display: none;
+  }
+  .side-2{
+    display: block;
+  }
+  .small-circle{
+    display: none;
+  }
+  .form{
+    width: 50vw;
+    position: absolute;
+    left: 20vw;
+    top: 1px;
+    height: fit-content;
+  }
+  textarea, input{
+    width: 100%;
+  }
+  ul {
+    margin: 0 !important;
+  }
+  ul li{
+    width: 80%;
+    margin: auto;
+    height: 5px;
+  }
 
 
 }

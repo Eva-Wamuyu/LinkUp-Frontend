@@ -6,7 +6,7 @@
 
 
   <p class="disclaimer p-4 mt-4">
-    Your Following List Is Only Visible To You
+    Your {{message}} List Is Only Visible To You
   </p>
 
   <div *ngIf="following.length == 0">
@@ -23,7 +23,7 @@
   </div>
 
   <div class="flex-users"  *ngIf="following.length > 0">
-  <div *ngFor="let user of following">
+  <div class="m-2" *ngFor="let user of following">
 
     <a [routerLink]="['/user', user.username]">
       <div class="d-flex flex-left px-8 py-4 mt-4 border-bottom grayish-background primary-border-radius">

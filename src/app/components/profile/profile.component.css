@@ -1,0 +1,30 @@
+.img{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+
+}
+.top-div{
+  background-color: var(--faint-orange);
+}
+
+textarea,input,button{
+  width: 80%;
+  background-color: var(--grayish);
+  outline: none;
+  resize: none;
+  margin: auto;
+  border-radius: var(--smooth-edges);
+
+}
+button{
+  background-color: var(--bright-orange);
+}
+@media screen and (min-width: 768px){
+  .inner-div{
+    width: 80%;
+    margin-left: 18%;
+    height: fit-content;
+  }
+
+}

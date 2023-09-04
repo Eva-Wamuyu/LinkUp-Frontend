@@ -12,13 +12,12 @@ export class PostInformaionComponent implements OnInit{
 
   constructor(private route: ActivatedRoute) { }
   post_id!: string;
+  showCommentForm: boolean[] = [];
 
   ngOnInit(): void {
     this.post_id = this.route.snapshot.paramMap.get('post_id') || "";
     console.log(this.post_id);
   }
-
-
 
   post: any = {"post_id":"30be3fc1-13ee-42ae-8711-62783aa22677",
   "username":"mohdirscoll0","likes":1,"comments":1,"date":"12/26/2022",
@@ -33,7 +32,20 @@ export class PostInformaionComponent implements OnInit{
   {"post_id":"e3a0573c-b6e0-4b12-83c1-57bf091e9cd4","username":"rwoolandi","likes":19,"comments":19,"date":"2/18/2023","content":"Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem."},]
 
   }
-  comments_list: any= this.post.comments_list
+
+  comments_list: any= this.post.comments_list;
+
+  toggleReplyForm(index: number) {
+    this.showCommentForm = this.showCommentForm.map((_value, i) => i === index);
+
+
+  }
+
+
+  cancelReplyForm(index:number) {
+    this.showCommentForm[index] = false;
+
+  }
 
 
 

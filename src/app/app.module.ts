@@ -15,6 +15,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { PostInformaionComponent } from './components/post-informaion/post-informaion.component';
 import { UserInformationComponent } from './components/user-information/user-information.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     PostInformaionComponent,
     UserInformationComponent,
     ProfileComponent,
+    NotfoundComponent,
     
   ],
   imports: [
