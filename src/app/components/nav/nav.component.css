@@ -75,6 +75,7 @@ li a{
   position: absolute;
   right: 5%;
   display: none;
+
 }
 .big-screen-jnr{
   height: 60vh;
@@ -119,6 +120,19 @@ textarea, input{
   resize: none;
   font-size: 1.25rem;
 }
+.button{
+  background-color: var( --black);
+  border-radius: var(--smooth-edges);
+  color: var(--white);
+  padding: 6px 6px;
+  text-align: center;
+
+}
+@media (min-width: 769px) and (max-width: 1050px) {
+ .pop{
+  display: none;
+ }
+}
 @media screen and (min-width: 768px){
   .flex-container{
     width: 100vw;
@@ -148,7 +162,7 @@ textarea, input{
     width: 16vw;
     position: absolute;
     left: 4%;
-    top: 12vh;
+    top: 7%;
     height: 80%;
     padding: 0;
   }
@@ -179,7 +193,10 @@ textarea, input{
     margin: auto;
     height: 5px;
   }
+  .button{
+    width: 80%;
+    margin-left: 10%;
+  }
 
 
 }
-

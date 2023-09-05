@@ -107,3 +107,6 @@ body {
   scrollbar-color: var(--bright-orange) var(--white);
   scrollbar-width: thin;
 }
+*::selection{
+  background-color: var(--bright-orange);
+}

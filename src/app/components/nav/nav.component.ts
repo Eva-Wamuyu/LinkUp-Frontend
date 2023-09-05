@@ -10,6 +10,8 @@ export class NavComponent implements OnInit{
   sideMenuOpen: boolean = false;
   showAddPostForm: boolean= false;
   addPostForm!: FormGroup;
+  username: string = 'holly'
+  logged: boolean = false;
 
   toggleMenu =()=>{
     this.sideMenuOpen = !this.sideMenuOpen;
@@ -28,7 +30,8 @@ export class NavComponent implements OnInit{
     console.log(this.addPostForm.value)
 
   }
- 
+
+
 
 
 
@@ -37,6 +40,8 @@ export class NavComponent implements OnInit{
       content: new FormControl('', ),
       post_img: new FormControl('')
     })
+
+    this.logged = false;
 
   }
 

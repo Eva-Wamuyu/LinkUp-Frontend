@@ -6,6 +6,7 @@ input,button{
   width: 95%;
 
 
+
 }
 
 input{
@@ -16,6 +17,7 @@ input{
 }
 .form{
   background-color: var(--grayish);
+  margin: auto;
 
 
 }
@@ -31,6 +33,7 @@ input{
   .form{
     width: 40vw;
     margin: auto;
+
   }
 
 
