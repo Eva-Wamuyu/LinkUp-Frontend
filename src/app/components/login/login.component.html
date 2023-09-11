@@ -4,13 +4,13 @@
     <h1 class="primary-text text-center mt-8">LinkUp</h1>
     <form class="form p-4 mt-8 py-8" [formGroup]="loginForm" (ngSubmit)="loginUser()">
       <h2 class="text-center">Welcome Back</h2>
-      <p *ngIf="showmessage" class="p-4 primary-border-radius" [class]="className">
+      <p *ngIf="showmessage" class="p-3 primary-border-radius" [class]="className">
         {{message}}
       </p>
       <div class="mt-8">
-        <label for="username">Username</label>
+        <label for="emailOrUsername">Username/Email</label>
         <br>
-        <input id="username" class="p-3 py-6" id="email" formControlName="username"/>
+        <input id="emailOrUsername" class="p-3 py-6" id="emailOrUsername" formControlName="emailOrUsername"/>
       </div>
 
       <div class="mt-8">
@@ -29,7 +29,7 @@
         <p class="mt-8">
           Want To Join The Fun?
           <span class="primary-text underline">
-            <a routerLink="/register" routerLinkActive="active"> Create Account</a>
+            <a routerLink="/auth/register" routerLinkActive="active"> Create Account</a>
           </span>
         </p>
 

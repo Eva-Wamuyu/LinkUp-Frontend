@@ -1,5 +1,8 @@
 import { Component,OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { catchError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -7,11 +10,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['../login/login.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  constructor(private router: Router, private authService: AuthServiceService){}
   registerForm!: FormGroup;
   message: string = '';
   showmessage: boolean = false;
   className!: string;
+
 
   ngOnInit():void {
     this.registerForm = new FormGroup({
@@ -23,10 +27,37 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser = ()=>{
-    this.message = "Registration Successfull! Welcome Wanderer!";
-    console.log(this.registerForm.value)
-    this.showmessage = true;
-    this.className = "success"
+    if (this.registerForm.invalid) {
+      this.message = 'Please enter both fields';
+      this.showmessage = true;
+      this.className = 'error';
+    } else {
+      this.authService.RegisterService(this.registerForm.value)
+        .pipe(
+          catchError((error: any) => {
+            const errorMessage = error.error.message || 'An unexpected error occurred';
+            this.message = errorMessage;
+            this.className = 'error';
+            this.showmessage = true;
+            console.log('Error:', error);
+            return [];
+          })
+        )
+        .subscribe((res: any) => {
+        console.log(res);
+        this.message = res.message;
+          this.showmessage = true;
+          if (res.status == 'success') {
+            this.className = 'success';
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('username', res.user.username);
+
+            setTimeout(() => {
+              this.router.navigate(['home']);
+            }, 2000);
+          }
+        });
+      }
   }
 
 }

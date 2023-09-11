@@ -1,6 +1,8 @@
 import { Component,OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { Router } from '@angular/router';
+import { catchError, tap } from 'rxjs';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,20 +14,56 @@ export class LoginComponent implements OnInit {
   showmessage: boolean = false;
   className!: string;
 
-
+  constructor(private authService: AuthServiceService, private router: Router){}
   ngOnInit():void {
     this.loginForm = new FormGroup({
-      username: new FormControl('', ),
-      password: new FormControl('')
+      emailOrUsername: new FormControl('', Validators.required),
+      password: new FormControl('',Validators.required)
     })
 
   }
 
-  loginUser = ()=>{
-    console.log(this.loginForm.value)
-    this.message = "Logg In Error"
-    this.className = "error"
-    this.showmessage = true;
+  errorMessages:any  = {
+    404: 'Woops, seems You Do Not have An Account',
+    403: 'Woops, Password is not correct',
+    500: 'Internal Server Error',
+  };
 
+  loginUser = ()=>{
+    if(this.loginForm.invalid){
+      this.message = 'Please enter Both fields'
+      this.showmessage = true;
+      this.className = 'error';
+    }
+    else{
+
+    this.authService.LoginService(this.loginForm.value).pipe(
+      catchError((error: any) => {
+        const errorMessage = this.errorMessages[error.status as keyof any] || 'An unexpected error occurred';
+        this.message = errorMessage;
+        this.className = 'error';
+        this.showmessage = true;
+        console.log("Error:", error);
+        return []
+      }))
+    .subscribe(
+      (res:any) =>{
+        console.log(res)
+        this.message = res.message;
+        this.showmessage = true;
+        if(res.status== 'success'){
+          this.className = 'success';
+          localStorage.setItem('token',res.token)
+          localStorage.setItem('username',res.user.username)
+
+          tap(() => {
+            this.authService.setLogged();
+          })
+        setTimeout(() => {
+          this.router.navigate(['home']);
+        },1000);
+      }
+    });
   }
+}
 }
