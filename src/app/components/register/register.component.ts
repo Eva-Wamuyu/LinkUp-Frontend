@@ -7,7 +7,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['../login/login.component.css']
+  styleUrls: ['../login/login.component.css'],
+  styles: [`
+    .form{
+      height: 95vh;
+    }
+  `]
 })
 export class RegisterComponent implements OnInit {
   constructor(private router: Router, private authService: AuthServiceService){}
@@ -39,18 +44,19 @@ export class RegisterComponent implements OnInit {
             this.message = errorMessage;
             this.className = 'error';
             this.showmessage = true;
-            console.log('Error:', error);
+            // console.log('Error:', error);
             return [];
           })
         )
         .subscribe((res: any) => {
-        console.log(res);
+        // console.log(res);
         this.message = res.message;
           this.showmessage = true;
-          if (res.status == 'success') {
+          if (res.status == 'ok') {
             this.className = 'success';
             localStorage.setItem('token', res.token);
             localStorage.setItem('username', res.user.username);
+            this.authService.setLogged(res.user.username);
 
             setTimeout(() => {
               this.router.navigate(['home']);

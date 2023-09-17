@@ -7,12 +7,13 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
+  cursor: pointer;
 
 }
 .nav{
   padding: 12px;
   text-align: center;
-  border-bottom: solid 1px var(--orange-red);
+  border-bottom: solid 0.5px var(--orange-red);
   position: -webkit-sticky;
   position:sticky;
   top: 0;
@@ -24,21 +25,44 @@
 }
 
 .side-menu{
-  background-color: var(--bright-orange);
+  background-color: var(--faint-orange);
   width: 80%;
   padding: 36px;
   position: fixed;
   top: 8px;
   height: 98vh;
-  z-index: 2;
   transform: rotate(0deg);
   transition: transform 0.3s ease-in-out;
+  color: var(--black);
 }
-.side-menu ul{
-  margin: 10% 12px;
+.side-1{
+  z-index: 2;
 }
-.side-menu li{
+.side-1 li{
   padding: 18px;
+}
+.side-2 .list{
+  height: 50dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.side-2 a{
+  display: flex;
+
+}
+.side-2 {
+  padding: 6px;
+  height: auto;
+  border: none;
+}
+.side-2 a{
+  height: auto;
+  padding: 6px;
+}
+.active{
+  background-color: var(--bright-orange);
+
 }
 .log-out{
   position: absolute;
@@ -63,23 +87,26 @@
 }
 .backdrop2{
   background-color: rgba(0, 0, 0, 0.75);
-  z-index: 3;
+  z-index: 2;
 }
 li a{
-
   display: flex;
+  cursor: pointer;
 }
 .big-screen{
   height: 80vh;
   width: 18vw;
   position: absolute;
-  right: 5%;
+  /* right: 1%; */
+  right: 0;
   display: none;
+
 
 }
 .big-screen-jnr{
   height: 60vh;
   background-color: var(--faint-orange);
+  color: var(--black);
 
 }
 .circle{
@@ -107,27 +134,35 @@ li a{
   background-color: var(--white);
   border-radius: var(--smooth-edges);
   position: fixed;
-  bottom: 2vh;
   left: 10vw;
-
+  top: 12%;
 
 }
-textarea, input{
+.textarea, input{
   background-color: var(--grayish);
   border-radius: var(--smooth-edges);
   outline: none;
-  max-width: 100%;
+  width: 100%;
   resize: none;
   font-size: 1.25rem;
 }
+
 .button{
   background-color: var( --black);
   border-radius: var(--smooth-edges);
   color: var(--white);
   padding: 6px 6px;
   text-align: center;
-
 }
+.dark-nav{
+  background-color: var(--shade-of-blue);
+  color: var(--white);
+}
+/* .light-nav{
+  background-color: var(--white);
+  color: var(--black);
+} */
+
 @media (min-width: 769px) and (max-width: 1050px) {
  .pop{
   display: none;
@@ -159,11 +194,12 @@ textarea, input{
   }
   .side-menu{
     display: block;
-    width: 16vw;
+    /* width: 16vw; */
+    width: 17.5vw;
     position: absolute;
-    left: 4%;
-    top: 7%;
-    height: 80%;
+    left: 0;
+    top: 10%;
+    height: 90%;
     padding: 0;
   }
   .hide{
@@ -179,8 +215,12 @@ textarea, input{
     width: 50vw;
     position: absolute;
     left: 20vw;
-    top: 1px;
+    top: 16px;
     height: fit-content;
+    color: var(--black);
+  }
+  .form svg{
+    color: var(--black);
   }
   textarea, input{
     width: 100%;
@@ -196,6 +236,9 @@ textarea, input{
   .button{
     width: 80%;
     margin-left: 10%;
+  }
+  .backdrop-1{
+    display: none;
   }
 
 

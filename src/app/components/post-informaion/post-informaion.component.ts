@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { catchError } from 'rxjs';
+import { ApiServiceService } from 'src/app/services/api-service.service';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { Post,Comment } from 'src/app/services/interfaces';
 
 
 @Component({
@@ -10,42 +15,181 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PostInformaionComponent implements OnInit{
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private apiservice: ApiServiceService,
+    private auth: AuthServiceService) { }
   post_id!: string;
   showCommentForm: boolean[] = [];
+  post: Post = {
+    content: '',
+    image_url_post: '',
+    post_id: '',
+    created_at: '',
+    num_likes: 0,
+    num_comments: 0,
+    has_liked: false,
+    username: '',
+    image_url_user: ''
+  };
+  comments: Comment[] = [];
+  addComment!: FormGroup
+  addSubCommentForm!: FormGroup
+  message: string = "";
+  className: string = "";
+  logged: boolean = false;
+  err:boolean = false;
 
-  ngOnInit(): void {
-    this.post_id = this.route.snapshot.paramMap.get('post_id') || "";
-    console.log(this.post_id);
-  }
 
-  post: any = {"post_id":"30be3fc1-13ee-42ae-8711-62783aa22677",
-  "username":"mohdirscoll0","likes":1,"comments":1,"date":"12/26/2022",
-  "content":"Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
-  "image_url":"http://dummyimage.com/122x100.png/5fa2dd/ffffff",
-  "comments_list": [ {"post_id":"71bbd631-b1d9-42dd-9de9-c4c993cf6f74","username":"mgravesh","likes":18,"comments":18,"date":"6/7/2023","content":"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit."},
-  {"post_id":"e3a0573c-b6e0-4b12-83c1-57bf091e9cd4","username":"rwoolandi","likes":19,"comments":19,"date":"2/18/2023","content":"Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem."},
-  {"post_id":"12496c91-5ec7-4142-a943-f66d0721248b","username":"gadranj","likes":20,"comments":20,"date":"7/2/2023","content":"Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.", "child_comments": [
-  {"post_id":"71bbd631-b1d9-42dd-9de9-c4c993cf6f74","username":"mgravesh","likes":18,"comments":18,"date":"6/7/2023","content":"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit."},
-  {"post_id":"e3a0573c-b6e0-4b12-83c1-57bf091e9cd4","username":"rwoolandi","likes":19,"comments":19,"date":"2/18/2023","content":"Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem."},
-  ]},
-  {"post_id":"e3a0573c-b6e0-4b12-83c1-57bf091e9cd4","username":"rwoolandi","likes":19,"comments":19,"date":"2/18/2023","content":"Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem."},]
-
-  }
-
-  comments_list: any= this.post.comments_list;
 
   toggleReplyForm(index: number) {
     this.showCommentForm = this.showCommentForm.map((_value, i) => i === index);
-
-
   }
-
 
   cancelReplyForm(index:number) {
     this.showCommentForm[index] = false;
+  }
+
+  ngOnInit(): void {
+    this.logged = this.auth.credSet().islogged;
+    this.getDetails();
+    this.addComment = new FormGroup({
+      content: new FormControl('', Validators.required),
+
+    })
+    this.addSubCommentForm = new FormGroup({
+      content: new FormControl('', Validators.required),
+
+    })
 
   }
+
+
+  getDetails = ()=>{
+    this.post_id = this.route.snapshot.paramMap.get('post_id') || "";
+    this.apiservice.fetchPostDetails(this.post_id).pipe(
+      catchError((err:any)=>{
+
+        this.err = true;
+        return []
+      })
+    )
+    .subscribe(
+      (res) =>{
+            this.post = res.post;
+            this.comments = res.comments;
+
+            if (res.comments) {
+              this.comments = res.comments.map((comment:any) => comment.comment);
+            }
+        this.showCommentForm = Array(this.comments.length).fill(false);
+      }
+    )
+  }
+
+
+  submitComment = (post_id: string) => {
+    this.apiservice.addComment(post_id, this.addComment.value)
+      .pipe(
+        catchError((err: any) => {
+          this.message = 'Error Occurred: ' + err.message;
+          this.className = 'error';
+          this.addComment.reset();
+          setTimeout(() => {
+            this.message = '';
+
+          }, 2000);
+          return [];
+        })
+      )
+      .subscribe(data => {
+        this.className = 'success';
+        this.message = data.message;
+        this.addComment.reset();
+        setTimeout(() => {
+          this.message = '';
+        }, 2000);
+
+        this.getDetails();
+      });
+  }
+
+
+
+  submitSubComment = (comment_id: number) => {
+    this.apiservice.addSubComment(comment_id, this.addSubCommentForm.value).pipe(
+      catchError(error => {
+        this.message = error.error.message;
+        this.className = 'error';
+        this.addSubCommentForm.reset();
+        setTimeout(() => {
+          this.message = '';
+        }, 2000);
+        return [];
+      })
+    ).subscribe(data => {
+      this.message = data.message;
+      this.className = 'success';
+      this.addSubCommentForm.reset();
+      setTimeout(() => {
+        this.message = '';
+      }, 3000);
+      this.getDetails()
+    });
+  }
+
+  setMessage = (data: { message: string, className: string })=>{
+    this.message = data.message
+    this.className = data.className
+    this.getDetails()
+  }
+
+  likeFunc=(comment_id:number)=>{
+    this.apiservice.likeCommentService(comment_id).pipe(
+      catchError((error: any) => {
+        if(error.status == 401 || error.status == 403){
+          this.message = 'Login To Vote This Up'
+          this.className = 'error'
+      }
+      else{
+       this.message = error.error.message || 'An unexpected error occurred';
+       this.className = 'error'
+      }
+
+        return [];
+
+      })
+
+    ).subscribe(
+      res =>{
+        this.getDetails()
+      }
+    )
+    setTimeout(() => {
+      this.message = '';
+    }, 2000);
+  }
+
+  getRemainingCharacters(): number {
+    const content = document.getElementById('content') as HTMLInputElement;
+    return 280 - content.value.length;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

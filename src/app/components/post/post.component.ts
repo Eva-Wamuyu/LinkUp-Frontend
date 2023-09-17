@@ -1,4 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { catchError } from 'rxjs';
+import { ApiServiceService } from 'src/app/services/api-service.service';
+import { Post } from 'src/app/services/interfaces';
 
 @Component({
   selector: 'app-post',
@@ -7,8 +10,84 @@ import { Component, Input } from '@angular/core';
 })
 export class PostComponent {
 
-  @Input() post: any;
+  constructor(private api: ApiServiceService){}
+  @Input() post: Post = {
+    content: '',
+    image_url_post: '',
+    post_id: '',
+    created_at: '',
+    num_likes: 0,
+    num_comments: 0,
+    has_liked: false,
+    username: '',
+    image_url_user: ''
+  };
+  @Input() canModify:boolean = false;
   @Input() useRouterLink: boolean = true;
   @Input()  showButton: boolean = true;
+  @Output() messageShow = new EventEmitter<{message: string,className:string}>();
+  showDialog = false;
+  post_to_delete: string='';
+  message:string='';
+
+
+
+  handleSelection(confirmed: boolean) {
+    if (confirmed) {
+      this.api.deletePost(this.post_to_delete).pipe(
+        catchError((err:any)=>{
+           return []
+        })
+        ).subscribe(
+          res =>{
+            this.messageShow.emit({message:res.message,className:'success'})
+
+            this.showDialog = false;
+          }
+      )
+      this.deletePost('k');
+    } else {
+      // User canceled the action
+      this.showDialog = false;
+    }
+  }
+
+  deletePost = (post_id:string)=>{
+    this.post_to_delete = post_id;
+    this.showDialog = true;
+  }
+
+
+
+
+
+
+  likeFunc=(post_id:string)=>{
+    this.api.likePostService(post_id).pipe(
+      catchError((error: any) => {
+        if(error.status == 401 || error.status == 403){
+          this.messageShow.emit({message:'Login To up vote this',className:'error'})
+        }
+        else{
+        const errorMessage = error.error.message || 'An unexpected error occurred';
+        this.messageShow.emit({message:errorMessage,className:'error'})
+        }
+        return [];
+      })
+
+    ).subscribe(
+      res =>{
+        this.messageShow.emit({message:res.message,className:'success'})
+      }
+    )
+    setTimeout(() => {
+      this.messageShow.emit({message:'',className:''})
+    }, 2000);
+  }
+
+
+
+
+
 
 }

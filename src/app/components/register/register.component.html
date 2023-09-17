@@ -1,50 +1,54 @@
-<div class="m-container flex items-center">
+<div class="center">
 
-  <div>
-    <h1 class="primary-text text-center mt-8">LinkUp</h1>
-    <form class="form p-4 mt-8 py-8" [formGroup]="registerForm" (ngSubmit)="registerUser()">
+
+    <form  class="form p-4 mt-6 py-6" [formGroup]="registerForm" (ngSubmit)="registerUser()">
+      <h1 class="primary-text text-center">LinkUp</h1>
       <h2 class="text-center">Create Account</h2>
       <p *ngIf="showmessage" class="p-4 primary-border-radius" [class]="className">
            {{message}}
       </p>
-      <div class="mt-8">
-        <label for="email">Email</label>
+      <div class="mt-6">
+        <label for="email">Email
+          <small></small>
+        </label>
         <br>
         <input id="email" class="p-3 py-6" id="email" formControlName="email"/>
       </div>
-      <div class="mt-8">
-        <label for="username">Username</label>
+      <div class="mt-6">
+        <label for="username">Username
+          <small>Your unique identifier, not changeable</small>
+        </label>
         <br>
         <input id="username" class="p-3 py-6" id="username" formControlName="username"/>
 
       </div>
 
-      <div class="mt-8">
-        <label for="password">Password</label>
+      <div class="mt-6">
+        <label for="password">Password
+          <small>Atleast 6 characters long</small>
+        </label>
         <br>
         <input class="p-3 py-6" id="password" type="password" formControlName="password"/>
       </div>
 
-      <div class="mt-8">
+      <div class="mt-6">
         <button type="submit" class="primary-button py-3 mt-4">
            Join The Fun
         </button>
       </div>
 
       <div class="text-center">
-        <p class="mt-8">
+        <p class="mt-6">
           Already A Member?
           <span class="primary-text underline">
             <a routerLink="/auth/login" routerLinkActive="active"> Login</a>
           </span>
         </p>
 
-        <p class="mt-8 flex justify-center">
+        <p class="mt-6 flex justify-center">
           Guest Scroll?
           <a routerLink="/home" routerLinkActive="active"><svg class="primary-text" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12.707 2.293a1 1 0 0 0-1.414 0l-7 7l-2 2a1 1 0 1 0 1.414 1.414L4 12.414V19a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-6.586l.293.293a1 1 0 0 0 1.414-1.414l-9-9Z" clip-rule="evenodd"/></svg></a>
         </p>
       </div>
     </form>
-
-  </div>
 </div>

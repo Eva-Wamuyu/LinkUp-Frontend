@@ -1,8 +1,6 @@
-<!--
-<div class="container">
+<ng-container *ngIf="showNav()">
+  <!-- <app-nav (setCurrentUserEvent)="currentUserEvent($event)"></app-nav> -->
   <app-nav></app-nav>
-</div>
- -->
-
+</ng-container>
 
 <router-outlet></router-outlet>

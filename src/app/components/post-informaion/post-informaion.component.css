@@ -1,29 +1,91 @@
 
 .comment-container, .child-comment-container{
-  border-left: 2px solid var(--faint-orange);
+  border-left: 1px solid var(--faint-orange);
 }
 .user-info{
   width: fit-content;;
 }
-.reply-form{
-
+.comment-form input{
+   border: none;
+   outline: none;
+   background-color: var(--grayish);
 }
-textarea{
-  width: 92%;
+.textarea{
   margin: auto;
   outline: none;
-  border: solid 1px var(--faint-orange);
+  border: solid 0.5px var(--faint-orange);
+  border-radius: var(--smooth-edges);
   resize: none;
+  width: 100%;
 }
 .end{
   position: absolute;
   left: 80%;
+}
+.pop-up{
+  position: fixed;
+  right: 2%;
+  padding: 12px;
+  margin-top: 1%;
+}
+.comment-form {
+  padding: 12px;
+}
+
+.comment-form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: block;
+  height: auto;
+}
+
+.comment-button {
+  background-color: var(--bright-orange);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comment-button:disabled {
+  background-color: var(--faint-orange);
+  cursor: not-allowed;
+}
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+button > svg {
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.reply-form form{
+  width: 90%;
+  margin: auto;
+}
+.bottom{
+  margin-top: -56px;
 }
 @media screen and (min-width: 768px){
   .post-div{
     width: 80%;
     margin-left: 18%;
     height: fit-content;
+  }
+  .pop-up{
+    right: calc(20vw + 2%);
   }
 
 }

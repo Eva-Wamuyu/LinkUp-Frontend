@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, tap } from 'rxjs';
+import { catchError } from 'rxjs';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 @Component({
   selector: 'app-login',
@@ -34,6 +34,12 @@ export class LoginComponent implements OnInit {
       this.message = 'Please enter Both fields'
       this.showmessage = true;
       this.className = 'error';
+      setTimeout(() => {
+        this.message = ''
+        this.showmessage = false;
+        this.className = '';
+      },3000)
+
     }
     else{
 
@@ -48,17 +54,16 @@ export class LoginComponent implements OnInit {
       }))
     .subscribe(
       (res:any) =>{
-        console.log(res)
+
         this.message = res.message;
         this.showmessage = true;
-        if(res.status== 'success'){
+        if(res.status== 'ok'){
           this.className = 'success';
           localStorage.setItem('token',res.token)
           localStorage.setItem('username',res.user.username)
 
-          tap(() => {
-            this.authService.setLogged();
-          })
+          this.authService.setLogged(res.user.username);
+
         setTimeout(() => {
           this.router.navigate(['home']);
         },1000);
