@@ -151,8 +151,9 @@ export class UserInformationComponent implements OnInit {
         return [];
       }
     )).subscribe(res=>{
-      // console.log(res.comments);
+
       this.comments = res.comments;
+      
     })
    }
 

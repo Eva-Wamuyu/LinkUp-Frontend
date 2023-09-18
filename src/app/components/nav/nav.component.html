@@ -18,7 +18,7 @@
   </button>
 </nav>
 
-<div id="side-menu" class="side-menu side-1" *ngIf="sideMenuOpen" >
+<div id="side-menu2" class="side-menu side-1" *ngIf="sideMenuOpen" >
  <div *ngIf="logged">
   <div class="top-side m-4">
     <img class="side-icon" [src]="user.profile_image" alt="linkup-icon">
@@ -160,6 +160,9 @@
   <form *ngIf="showAddPostForm" class="form p-4 py-4" [formGroup]="addPostForm" (ngSubmit)="addPostFunc()">
     <div class="flex justify-between">
       <svg (click)="hideAddPostFormFunc()" lass="mt-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="black" d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z"/></svg>
+      <p *ngIf="loading">
+          {{loading}}
+      </p>
       <button [disabled]="addPostForm.invalid || form" class="primary-button py-3 px-8">Post</button>
     </div>
     <div [class]="messageclass">

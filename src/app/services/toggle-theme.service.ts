@@ -18,6 +18,8 @@ export class ToggleThemeService {
       document.getElementById('nav')?.classList.remove('dark-nav');
       document.getElementById('side-menu')?.classList.remove('color');
       document.getElementById('special-text')?.classList.remove('text-color');
+      document.getElementById('side-menu2')?.classList.remove('color');
+
        return 'light'
     } else {
       localStorage.setItem('theme', 'dark-mode');
@@ -25,6 +27,7 @@ export class ToggleThemeService {
       document.getElementById('nav')?.classList.add('dark-nav');
       document.getElementById('side-menu')?.classList.add('color');
       document.getElementById('special-text')?.classList.add('text-color');
+      document.getElementById('side-menu2')?.classList.add('color');
 
       return 'dark'
     }
@@ -40,7 +43,7 @@ export class ToggleThemeService {
       document.getElementById('nav')?.classList.add('dark-nav');
       document.getElementById('side-menu')?.classList.add('color');
       document.getElementById('special-text')?.classList.add('text-color');
-
+      document.getElementById('side-menu2')?.classList.add('color');
       return 'dark';
 
     } else {
@@ -49,6 +52,7 @@ export class ToggleThemeService {
       document.getElementById('nav')?.classList.remove('dark-nav');
       document.getElementById('side-menu')?.classList.remove('color');
       document.getElementById('special-text')?.classList.remove('text-color');
+      document.getElementById('side-menu2')?.classList.add('color');
       return 'light'
     }
 

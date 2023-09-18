@@ -37,6 +37,7 @@ export class NavComponent implements OnInit{
   imagePreview: string | null = null;
   messageclass!: string;
   mode:string = ''
+  loading: string = ''
 
 
 
@@ -59,6 +60,7 @@ export class NavComponent implements OnInit{
 
 
   ngOnInit():void {
+    
     this.mode = this.theme.setTheme()
 
     this.addPostForm = new FormGroup({
@@ -101,10 +103,11 @@ export class NavComponent implements OnInit{
 
     if (!files){
       // console.log("in the if")
+      this.loading = ""
       this.form = true;
       return;
     }
-
+    this.loading = "holu'p uploading ..."
     const cloudname = environment.cloudname;
     this.form = false;
     const formData = new FormData();
@@ -115,10 +118,11 @@ export class NavComponent implements OnInit{
     this.http.post(`https://api.cloudinary.com/v1_1/${cloudname}/image/upload`, formData).subscribe(
       (response: any) => {
         if (response.secure_url) {
-
+          this.form = false;
+          this.loading = "Uploaded"
           this.cloudinary = response.secure_url;
           console.log(this.cloudinary)
-          this.form = true;
+
         }
 
       },
