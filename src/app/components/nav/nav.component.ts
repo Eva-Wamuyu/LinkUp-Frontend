@@ -60,7 +60,7 @@ export class NavComponent implements OnInit{
 
 
   ngOnInit():void {
-    
+
     this.mode = this.theme.setTheme()
 
     this.addPostForm = new FormGroup({
@@ -121,7 +121,7 @@ export class NavComponent implements OnInit{
           this.form = false;
           this.loading = "Uploaded"
           this.cloudinary = response.secure_url;
-          console.log(this.cloudinary)
+          // console.log(this.cloudinary)
 
         }
 
@@ -164,9 +164,10 @@ export class NavComponent implements OnInit{
       }
     );
     setTimeout(() => {
-      this.showAddPostForm = false;
       this.messageclass = '';
       this.message = '';
+      this.showAddPostForm = false;
+      this.loading = ""
     }, 2000);
   }
 
