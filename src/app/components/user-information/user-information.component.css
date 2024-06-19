@@ -1,47 +1,91 @@
 .top-div{
-    background-color: var(--faint-orange);
-    height: fit-content;
+  background-color: var(--faint-orange);
+  height: fit-content;
+  margin-top: 0;
 }
 .img{
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+width: 200px;
+height: 200px;
+border-radius: 50%;
 
 }
+.big-container{
+ position: static;
+}
+.border-red{
+border: solid 2px var(--warning);
+}
+.border-yellow{
+border: solid 2px var(--bright-orange)
+}
 nav{
-  background-color: var(--grayish);
+background-color: var(--grayish);
+position: sticky;
+position: -webkit-sticky;
+top: 9%;
+z-index: 1;
+color: var(--black);
+
+}
+nav p{
+cursor: pointer;
+}
+.info{
+background-color: var(--faint-orange);
+
+}
+.pop-up{
+top: 25%;
+}
+.about{
+position: static;
+}
+.pin{
+position: absolute;
+right: 10%;
+
+}
+.bio{
+background-color: var(--faint-orange);
+height: fit-content;
+}
+.active{
+color: red;
+border-bottom: 1px solid var(--bright-orange);
+}
+.primary-button:disabled{
+background-color: var(--grayish);
+cursor: not-allowed;
+}
+.dialog{
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 10;
+background-color: var(--faint-orange);
+
+}
+.backdrop {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: var(--backdrop);
+z-index: 9;
+cursor: pointer;
+}
+@media screen and (min-width: 768px){
+.user-info-div{
+  width: 80%;
+  margin-left: 18%;
+  height: fit-content;
+}
+nav{
   position: sticky;
   position: -webkit-sticky;
   top: 0;
 }
-nav p{
-  cursor: pointer;
-}
-.info{
-  background-color: var(--faint-orange);
-
-}
-.about{
-  position: static;
-}
-.pin{
-  position: absolute;
-  right: 10%;
-
-}
-.bio{
-  background-color: var(--faint-orange);
-  height: fit-content;
-}
-.active{
-  color: red;
- border-bottom: 1px solid var(--bright-orange);
-}
-@media screen and (min-width: 768px){
-  .user-info-div{
-    width: 80%;
-    margin-left: 18%;
-    height: fit-content;
-  }
 
 }

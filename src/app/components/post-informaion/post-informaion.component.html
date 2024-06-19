@@ -1,6 +1,20 @@
 <app-nav ></app-nav>
 
 <div class="big-container">
+  <div class="post-div" *ngIf="!post">
+
+    <div class="disclaimer p-8 text-center ml-5 my-4">
+      <p>
+        Post Not Found
+      </p>
+      <p>
+        We looked everywhere, even under the couch, but this post is missing.
+      </p>
+    </div>
+
+
+  </div>
+<ng-container *ngIf="post">
 <app-post [useRouterLink]="false" [post]="post"></app-post>
 
 <!-- <div *ngFor="let post of comments_list" class="comments-container">
@@ -10,12 +24,14 @@
 
 <div class="post-div">
   <div class="reply-form m-4">
-    <form action="">
+    <!-- For logged users to be changed with auth present -->
+    <form class="hidden" action="">
       <textarea class="p-4" placeholder="Add A Comment" name="" id="" cols="10" rows="10"></textarea>
       <svg class="end" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2z"/></svg>
     </form>
   </div>
   <h2 class="text-left primary-text">Replies</h2>
+  
  <div *ngFor="let comment of comments_list let i=index" class="comment-container ml-5 p-2 mt-4">
 
   <a [routerLink]="['/user', post.username]">
@@ -26,7 +42,7 @@
         <br>
         <b>
         <span>
-          {{comment.time}}
+          {{comment.created_at}}
         </span>
         <span>
           1730hrs
@@ -43,13 +59,13 @@
         <p class="flex">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 20H9v-8H4.16L12 4.16L19.84 12H15v8Z"/></svg>
           <span>
-            {{comment.likes}}
+            {{comment.likes_count}}
           </span>
         </p>
         <p class="flex">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path fill="currentColor" d="M1.5 0C.671 0 0 .67 0 1.5v8.993c0 .83.671 1.5 1.5 1.5h3.732l1.852 2.775a.5.5 0 0 0 .832 0l1.851-2.775H13.5c.829 0 1.5-.67 1.5-1.5V1.5c0-.83-.671-1.5-1.5-1.5h-12Z"/></svg>v
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path fill="currentColor" d="M1.5 0C.671 0 0 .67 0 1.5v8.993c0 .83.671 1.5 1.5 1.5h3.732l1.852 2.775a.5.5 0 0 0 .832 0l1.851-2.775H13.5c.829 0 1.5-.67 1.5-1.5V1.5c0-.83-.671-1.5-1.5-1.5h-12Z"/></svg>
           <span>
-            {{comment.comments}}
+            {{comment.subcomments?.length}}
           </span>
         </p>
         <p>
@@ -63,14 +79,14 @@
       <form *ngIf="showCommentForm[i]">
         <p>Replying to {{ comment.username }}'s comment:</p>
         <textarea class="p-4" placeholder="Add A Comment" name="" id="" cols="10" rows="10"></textarea>
-        <button type="button" (click)="cancelReplyForm(comment.id)">Cancel</button>
+        <button type="button" (click)="cancelReplyForm(comment.comment_id)">Cancel</button>
         <button type="submit">Post</button>
       </form>
 
 
 
-      <div  class="child-comment-container ml-8 p-4" *ngIf="comment.child_comments">
-        <div *ngFor="let comment of comment.child_comments">
+      <div  class="child-comment-container ml-8 p-4" *ngIf="comment?.subcomments">
+        <div *ngFor="let comment of comment?.subcomments">
         <div class="user-info d-flex flex-left font-bold">
           <img class="default-icon" src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQ7xetZazndXzsY-Wos8xN576trcmTX8gHc3wunT8NOh6a03Svy2LrQhrMvV7NVzbEkyXliR9pSMbuwO_4" alt="">
          <p>
@@ -78,10 +94,7 @@
           <br>
           <b>
           <span>
-            {{comment.time}}
-          </span>
-          <span>
-            1730hrs
+            {{comment.created_at | date}}
           </span>
           </b>
         </p>
@@ -111,10 +124,20 @@
     </div>
     </div>
   </div>
+
+</div>
+
+<div *ngIf="comments_list.length == 0">
+  <p class="disclaimer p-8 text-center ml-5 my-4">
+        Be The first to reply to this post
+  </p>
 </div>
 
 
 </div>
+</ng-container>
+</div>
+
 
 
 

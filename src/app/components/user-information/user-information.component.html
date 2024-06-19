@@ -2,10 +2,22 @@
 <app-nav></app-nav>
 
 <div class="big-container ">
-  <div class="user-info-div m-container pt-4">
+
+  <div class="user-info-div m-container pt-4" *ngIf="!userInfo">
+    <div class="info p-8 my-4 text-center disclaimer text-color">
+      <p>
+        Username not found in this dimension.
+      </p>
+      <p>
+        Perhaps it's in a parallel universe
+      </p>
+    </div>
+  </div>
+  <div class="user-info-div m-container pt-4" *ngIf="userInfo">
   <div *ngIf="!(username ==logged_user)" class="top-div py-16 px-8">
-    <img  class="icon img" src="https://e1.pxfuel.com/desktop-wallpaper/272/144/desktop-wallpaper-blessed-virgin-mary-virgin-mary.jpg" alt="">
-     <h2>Harley Quinn</h2>
+    <img  class="icon img" [src]="userInfo.profile_image || 'https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg'" [alt]="userInfo.username + 'profile image'">
+
+     <h2> {{userInfo.username}}</h2>
 
      <button class="primary-button px-12 py-3">Follow</button>
   </div>
@@ -24,13 +36,13 @@
      <div class="">
         <div class="flex justify-around mt-4">
           <p>
-            15
+            {{userInfo.followers}}
             <br>
             Followers
           </p>
 
           <p>
-            1
+            {{userInfo.following}}
             <br>
             Following
           </p>
@@ -38,7 +50,7 @@
 
         <div class="flex justify-around mt-4">
           <p>
-            70
+            {{posts.length}}
             <br>
             Posts
           </p>
@@ -53,7 +65,10 @@
 
      <div class="bio px-16 py-12 my-4">
       <svg class="pin ml-8" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M28.586 13.314L30 11.9L20 2l-1.314 1.415l1.186 1.186L8.38 14.322l-1.716-1.715L5.25 14l5.657 5.677L2 28.583L3.41 30l8.911-8.909L18 26.748l1.393-1.414l-1.716-1.716l9.724-11.49Z"/></svg>
-           <p>
+           <p *ngIf="userInfo?.bio">
+            {{userInfo.bio}}
+           </p>
+           <p *ngIf="!userInfo?.bio">
             "Bio Comes Here"
            </p>
      </div>

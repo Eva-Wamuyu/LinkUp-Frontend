@@ -5,4 +5,9 @@
 <div  *ngFor="let post of posts">
     <app-post [post]="post"></app-post>
 </div>
+<div class="loader-container post-div" *ngIf="loading">
+    <img class="loader" src="/assets/4f7c6e1e0f8a4fc0582c342ab414da4.png" alt="">
 </div>
+
+</div>
+

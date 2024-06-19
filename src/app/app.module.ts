@@ -16,6 +16,7 @@ import { PostInformaionComponent } from './components/post-informaion/post-infor
 import { UserInformationComponent } from './components/user-information/user-information.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { CopyToClipboardDirective } from './directives&Pipes/copy-to-clipboard.directive';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     UserInformationComponent,
     ProfileComponent,
     NotfoundComponent,
+    CopyToClipboardDirective,
     
   ],
   imports: [

@@ -9,7 +9,7 @@
       <div *ngFor="let user of users">
        <a [routerLink]="['/user', user.username]">
         <div class="user-card p-4 text-left">
-          <img class="icon" [src]="user.profile_img" alt="">
+          <img class="icon" [src]="user.profile_image" alt="">
           <p class="mt-3 ml-2">
             <b>{{ user.username }}</b>
           </p>
@@ -23,7 +23,7 @@
       <div *ngFor="let user of users">
        <a [routerLink]="['/user', user.username]">
         <div class="user-card p-4 text-left">
-          <img class="icon" [src]="user.profile_img" alt="">
+          <img class="icon" [src]="user?.profile_image" alt="">
           <p class="mt-3 ml-2">
             <b>{{ user.username }}</b>
           </p>

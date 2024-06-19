@@ -3,9 +3,9 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 *{
     margin: 0;
     padding: 0;
@@ -17,6 +17,7 @@
 
 :root{
   --bright-orange: #FFA500;
+  /* --bright-orange: #ECE1CF; */
   --faint-orange: #ECE1CF;
   --grayish: #F5F5F5;
   --white: #fff;
@@ -26,6 +27,8 @@
   --orange-red: #A88A8A;
   --warning: rgb(225, 75, 75);
   --okay: rgb(79, 241, 79);
+  --backdrop:  rgba(36, 52, 71,0.5);
+
 }
 body{
   font-size: 16px;
@@ -40,6 +43,7 @@ h2{
 .primary-button{
   border-radius: var(--smooth-edges);
   background-color: var(--bright-orange);
+  color: var(--black);
 
 }
 .primary-border-radius{
@@ -71,17 +75,32 @@ h2{
 .grayish-background{
     background-color: var(--grayish);
 }
-.success{
+.success,.error{
   background-color: var(--okay);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
 }
 .error{
   background-color: var( --warning);
   color: var(--white);
 }
+.pop-up{
+  position: fixed;
+  right: 2%;
+  padding: 12px;
+  margin-top: 1%;
+}
+.img-preview{
+  width: 30%;
+  height: 30%;
+}
 @media screen and (min-width: 768px){
   .m-container{
     width: 85vw;
 
+  }
+  .pop-up{
+    right: calc(20vw + 2%);
   }
 
 }
@@ -109,4 +128,41 @@ body {
 }
 *::selection{
   background-color: var(--bright-orange);
+}
+.light-mode{
+  background-color: var(--white) ;
+  color: var(--black);
+
+}
+input,textarea{
+  color: var(--black);
+}
+.disclaimer{
+  border-left: 4px solid var(--bright-orange);
+  background-color: var(--faint-orange);
+  color: var(--black);
+}
+
+.search-form{
+  color: var(--black);
+  outline: none;
+  border: none;
+  border-bottom: 2px solid var(--bright-orange);
+
+}
+button:disabled{
+  background-color: var(--grayish);
+  cursor: not-allowed;
+  color: var(--black);
+}
+.color{
+  background-color: var(--bright-orange)!important;
+  color: var(--black);
+}
+.text-color{
+  color: var(--black);
+}
+.dark-mode{
+  background-color: var(--shade-of-blue);
+  color: var(--white);
 }
