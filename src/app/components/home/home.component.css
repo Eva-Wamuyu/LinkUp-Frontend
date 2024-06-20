@@ -28,7 +28,7 @@
 
 @keyframes rotation{
   from{
-    tranform : rotate(0deg);
+    transform : rotate(0deg);
   }
   to{
     transform: rotate(360deg);
