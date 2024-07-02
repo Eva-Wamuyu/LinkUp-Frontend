@@ -3,6 +3,14 @@
   background-color: var(--faint-orange);
 
 }
+.disclaimer{
+  position: sticky;
+  position: -webkit-sticky;
+  top: 8px;
+}
+.grayish-background{
+  color: var(--black);
+}
 .grayish-background:hover{
   background-color: var(--faint-orange);
 }

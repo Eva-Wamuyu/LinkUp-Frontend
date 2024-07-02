@@ -1,4 +1,9 @@
 .flex{
   background-color: var(--faint-orange);
-  height: 90vh;
+  /* height: 90vh; */
+}
+.home:hover{
+  background-color: var(--bright-orange);
+  transition: transform 0.3s ease;
+  transform: scale(0.8);
 }

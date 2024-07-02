@@ -1,17 +1,44 @@
+.nav{
+  position: fixed;
+  /* position: -webkit-sticky; */
+  top: 0px;
+  background-color: var(--white);
+}
+.select{
+  position: fixed;
+  top: 16px;
+  left: 48px;
+  background-color: var(--faint-orange);
+}
+
+.p{
+  cursor: pointer;
+}
+.template{
+  background-color: var(--faint-orange);
+  border-left: 4px solid var(--bright-orange);
+}
+
 @media screen and (min-width: 768px){
   .big-container{
-      width: 65vw;
+      width: 75vw;
       position: fixed;
       bottom: 0;
-      left: 10vw;
+      /* left: 7.5vw; */
+      left: 5.5vw;
       overflow-y: auto;
       height: 90vh;
+      margin-top: 2px;
 
   }
   .inner-div{
     width: 80%;
     margin-left: 18%;
     height: fit-content;
+  }
+  .select{
+    left: 20%;
+
   }
 }
 

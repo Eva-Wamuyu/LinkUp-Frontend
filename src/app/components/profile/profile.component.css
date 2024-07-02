@@ -4,11 +4,14 @@
   border-radius: 50%;
 
 }
-.top-div{
+.top-div,button:disabled{
   background-color: var(--faint-orange);
+ 
+
 }
 
-textarea,input,button{
+
+textarea,button,.image-input{
   width: 80%;
   background-color: var(--grayish);
   outline: none;
@@ -16,6 +19,10 @@ textarea,input,button{
   margin: auto;
   border-radius: var(--smooth-edges);
 
+}
+.image-input{
+ display: flex;
+ margin: 0;
 }
 button{
   background-color: var(--bright-orange);

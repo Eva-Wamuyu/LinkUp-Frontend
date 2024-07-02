@@ -1,25 +1,33 @@
-<app-nav></app-nav>
+<!-- <app-nav  [showPostForm]="false" ></app-nav> -->
 
 <div class="big-container">
   <div class="inner-div m-container">
-      <h2 class="">This Is How Your Profile Is Viewed By by Others</h2>
+      <h2 class="mt-4 w-2/3">Your Current Info
+      </h2>
       <div class="top-div p-4 m-0 ">
-        <div class="flex justify-between items-center">
-          <img class="img" src="https://media.newyorker.com/photos/64123041652f9d9fe976fff0/master/w_960,c_limit/ra1146.jpg" alt="">
-          <p>
-           <b>Harley Quinn</b>
+        <div class="pop-up" [ngClass]="messageClass">
+          <p>{{message}}</p>
+        </div>
+        <div class="w-1/2 justify-between items-center">
+          <img class="img" id="image_url" [src]="user.profile_image" [alt]="user.username">
+          <p style="color:var(--black)">
+           <b>{{user.username}}</b>
           </p>
         </div>
          <div class="mt-4 w-3/4">
-          <p class="flex justify-between">
-            120 Followers
-
-            <span>12 Following </span>
+          <p style="color:var(--black)" class="flex justify-between">
+           <a routerLink="/people/followers">
+            {{user.followers}}Followers
+           </a>
+           <a routerLink="/people/following">
+            {{user.following}}Following
+           </a>
           </p>
-          <p class="flex justify-between">
-           40 Posts
-
-            <span>12/12/2027</span>
+          <p style="color:var(--black)" class="flex justify-between">
+            <a  [routerLink]="['/user', user.username]" >
+              {{user.posts}}Posts
+            </a>
+            <span>{{user.joined_at | date: 'dd/MM/yyyy'}}</span>
           </p>
          </div>
       </div>
@@ -31,15 +39,18 @@
           <div class="mt-4">
             <label for="user_bio">Bio</label>
             <br>
-            <textarea id="user_bio" rows="5" cols="10" class="p-3 py-6" id="user_bio" formControlName="user_bio"> </textarea>
+            <textarea id="user_bio" rows="5" cols="10" class="p-3 py-6" id="user_bio" formControlName="bio"> </textarea>
           </div>
           <div class="mt-8">
-            <label for="username">Impresario (Profile picture)</label>
+            <label for="profile_image">Impresario (Profile picture)</label>
             <br>
-            <input class="p-3 py-6" id="profile_url" type="file" accept="image/*" formControlName="profile_url"/>
+           <div class="image-input p-3 py-6 text-center">
+            <input class="" id="profile_image" type="file" accept="image/*" (change)="uploadImageF($event)" formControlName="profile_image"/>
+            <img [src]="imagePreview" alt="Image Preview" *ngIf="imagePreview" class="mt-3 img-preview">
+           </div>
           </div>
           <div class="mt-8">
-            <button type="submit" class="primary-button py-3 mt-4">
+            <button [disabled]="editUserInformationForm.pristine" type="submit" class="primary-button py-3 mt-4">
                Update Details
             </button>
           </div>

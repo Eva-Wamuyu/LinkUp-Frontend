@@ -3,7 +3,6 @@
   white-space: nowrap;
   border-radius: var(--smooth-edges);
 
-
 }
 .icon{
   width: 200px ;
@@ -15,5 +14,6 @@
   display: inline-block;
   min-width: 300px;
   background-color: var(--grayish);
+  height: 150px;
 }
 

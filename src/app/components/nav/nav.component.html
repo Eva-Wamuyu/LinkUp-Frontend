@@ -1,161 +1,203 @@
-<nav class="flex-container nav w3-margin-bottom">
-  <svg class="hide mt-4" (click)="toggleMenu()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512"><path fill="currentColor" d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z"/></svg>
-  <img  class="icon small-screen-hidden" src="./assets/iconnny.png" alt="linkup-icon">
-  <p class="primary-text">
+<nav id="nav" class="flex-container justify-between nav w3-margin-bottom h-full">
+  <div class="flex items-center ">
+    <svg class="h-6 w-6 hide cursor-pointer mr-8" (click)="toggleMenu()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z"/></svg>
+    <img routerLink="/home" class="icon small-screen-hidden h-6 w-6" src="./assets/iconnny.png" alt="linkup-icon">
+  </div>
+  <p class="primary-text h-6">
     LinkUp
   </p>
-  <form class="small-screen-hidden" action="">
+  <!-- <form class="small-screen-hidden" action="">
     <input placeholder="Search ..." type="text">
-  </form>
-  <p>
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="currentColor" d="M235.54 150.21a104.84 104.84 0 0 1-37 52.91A104 104 0 0 1 32 120a103.09 103.09 0 0 1 20.88-62.52a104.84 104.84 0 0 1 52.91-37a8 8 0 0 1 10 10a88.08 88.08 0 0 0 109.8 109.8a8 8 0 0 1 10 10Z"/></svg>
-  </p>
+  </form> -->
+
+  <button *ngIf="mode == 'light'" id="toggle" (click)="setTheme()" class="h-6 w-6">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="currentColor" d="M235.54 150.21a104.84 104.84 0 0 1-37 52.91A104 104 0 0 1 32 120a103.09 103.09 0 0 1 20.88-62.52a104.84 104.84 0 0 1 52.91-37a8 8 0 0 1 10 10a88.08 88.08 0 0 0 109.8 109.8a8 8 0 0 1 10 10Z"/></svg>
+  </button>
+  <button *ngIf="mode == 'dark'" id="toggle" (click)="setTheme()" class="h-6 w-6">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 18a6 6 0 1 1 0-12a6 6 0 0 1 0 12ZM11 1h2v3h-2V1Zm0 19h2v3h-2v-3ZM3.515 4.929l1.414-1.414L7.05 5.636L5.636 7.05L3.515 4.93ZM16.95 18.364l1.414-1.414l2.121 2.121l-1.414 1.414l-2.121-2.121Zm2.121-14.85l1.414 1.415l-2.121 2.121l-1.414-1.414l2.121-2.121ZM5.636 16.95l1.414 1.414l-2.121 2.121l-1.414-1.414l2.121-2.121ZM23 11v2h-3v-2h3ZM4 11v2H1v-2h3Z"/></svg>
+  </button>
 </nav>
 
-<div class="side-menu" *ngIf="sideMenuOpen" >
+<div id="side-menu2" class="side-menu side-1" *ngIf="sideMenuOpen" >
  <div *ngIf="logged">
   <div class="top-side m-4">
-    <img class="side-icon" src="https://wallpaperaccess.com/full/22728.jpg" alt="linkup-icon">
+    <img class="side-icon" [src]="user.profile_image" alt="linkup-icon">
     <p class="ml-1">
-      Harley Quinn
+      {{user.username}}
     </p>
    </div>
     <ul class="mt-3">
       <li>
-      <a routerLink="/home" routerLinkActive="active">       <svg class="icon-home" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7H4Z"/></svg> Home</a>
+      <a routerLink="/home" routerLinkActive="active" (click)="closeSideMenu()">
+      <svg class="" class="icon-home" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7H4Z"/></svg>
+      Home
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/user', user.username]" (click)="closeSideMenu()">
+
+           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3 21V3h18v18H3Zm15-4H6v1.5h12V17ZM6 15.5h12V14H6v1.5ZM6 12h12V6H6v6Zm0 5v1.5V17Zm0-1.5V14v1.5ZM6 12V6v6Zm0 2v-2v2Zm0 3v-1.5V17Z"/></svg>
+           <span  class="pop">Your </span> Posts
+     </a>
+    </li>
+      <li>
+        <a routerLink="/people/following" routerLinkActive="active" (click)="closeSideMenu()">
+          Following
+        </a>
       </li>
       <li>
-        <a [routerLink]="['/user', username]" >  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3 21V3h18v18H3Zm15-4H6v1.5h12V17ZM6 15.5h12V14H6v1.5ZM6 12h12V6H6v6Zm0 5v1.5V17Zm0-1.5V14v1.5ZM6 12V6v6Zm0 2v-2v2Zm0 3v-1.5V17Z"/></svg> <span  class="pop">Your </span> Posts</a>
+        <a routerLink="/people/followers" routerLinkActive="active" (click)="closeSideMenu()"> Followers</a>
       </li>
       <li>
-        <a routerLink="/people/following" routerLinkActive="active" > <span>69</span> Following</a>
+        <a routerLink="/users/connect" routerLinkActive="active" (click)="closeSideMenu()"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"/></svg> Connect</a>
       </li>
       <li>
-        <a routerLink="/people/followers" routerLinkActive="active"> <span>420</span> Followers</a>
-      </li>
-      <li>
-        <a routerLink="/users/connect" routerLinkActive="active"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"/></svg> Connect</a>
-      </li>
-      <li>
-        <a routerLink="/settings/profile" routerLinkActive="active">
+        <a routerLink="/settings/profile" routerLinkActive="active" (click)="closeSideMenu()">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linejoin="round" d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="7" r="3"/></g></svg>
           Profile
-          </a>
+        </a>
       </li>
     </ul>
 
 
-     <p class="log-out flex ">
+     <button (click)="logout()"  class="log-out flex ">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m17 8l-1.4 1.4l1.6 1.6H9v2h8.2l-1.6 1.6L17 16l4-4l-4-4M5 5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h7v-2H5V5Z"/></svg>
       Log Out
-     </p>
+     </button>
  </div>
 
  <div class="flex flex-col h-full align-middle gap-8 justify-center" *ngIf="!logged">
-      <a class="button flex justify-center" routerLink="/auth/login"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5l-5-5m9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14Z"/></svg> Log In </a>
-      <a class="button flex justify-center"  routerLink="/auth/register"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5l-5-5m9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14Z"/></svg> Sign Up </a>
+  <a (click)="closeSideMenu()" class="button flex justify-center" routerLink="/home">   <svg class="icon-home" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7H4Z"/></svg> Home </a>
+  <a class="button flex justify-center" routerLink="/auth/login"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5l-5-5m9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14Z"/></svg> Log In </a>
+  <a  class="button flex justify-center"  routerLink="/auth/register"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5l-5-5m9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14Z"/></svg> Sign Up </a>
  </div>
 
 </div>
-<div  class="backdrop" (click)="closeSideMenu()" *ngIf="sideMenuOpen"></div>
-<div (click)="hideAddPostFormFunc()"  *ngIf="showAddPostForm" class="backdrop backdrop2" ></div>
 
+
+<div *ngIf="showPostForm">
 <div *ngIf="logged" (click)="showAddPostFormFunc()" class="circle flex justify-center items-center small-circle mr-4">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-0.5 -0.5 24 24"><path fill="currentColor" d="m21.289.98l.59.59c.813.814.69 2.257-.277 3.223L9.435 16.96l-3.942 1.442c-.495.182-.977-.054-1.075-.525a.928.928 0 0 1 .045-.51l1.47-3.976L18.066 1.257c.967-.966 2.41-1.09 3.223-.276zM8.904 2.19a1 1 0 1 1 0 2h-4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4a1 1 0 0 1 2 0v4a4 4 0 0 1-4 4h-12a4 4 0 0 1-4-4v-12a4 4 0 0 1 4-4h4z"/></svg>
 </div>
+</div>
 
 
-<div class="big-screen">
-  <div class="big-screen-jnr mb-12 p-6">
-    <h1 class="text-center primary-text">LinkUp</h1>
-    <p class="text-center">
-      Your Place To Share Whats in Your Mind.
-    </p>
+<div  class="big-screen">
+  <div id="side-menu" class="big-screen-jnr mb-12 p-6">
+    <h1 id="special-text" class="text-center primary-text">LinkUp</h1>
     <p class="text-center mt-8">
       <b>
         Keeping it the telegraphic way- less words matter
       </b>
     </p>
+    <p class="text-center mt-8">
+      Hit the Round button to post
+    </p>
+    <p class="text-center">
+      Chieftain!
+    </p>
   </div>
 
-  <div *ngIf="logged"  (click)="showAddPostFormFunc()" class="circle flex justify-center items-center">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-0.5 -0.5 24 24"><path fill="currentColor" d="m21.289.98l.59.59c.813.814.69 2.257-.277 3.223L9.435 16.96l-3.942 1.442c-.495.182-.977-.054-1.075-.525a.928.928 0 0 1 .045-.51l1.47-3.976L18.066 1.257c.967-.966 2.41-1.09 3.223-.276zM8.904 2.19a1 1 0 1 1 0 2h-4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4a1 1 0 0 1 2 0v4a4 4 0 0 1-4 4h-12a4 4 0 0 1-4-4v-12a4 4 0 0 1 4-4h4z"/></svg>
+
+    <div *ngIf="logged"  (click)="showAddPostFormFunc()" class="circle flex justify-center items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-0.5 -0.5 24 24"><path fill="currentColor" d="m21.289.98l.59.59c.813.814.69 2.257-.277 3.223L9.435 16.96l-3.942 1.442c-.495.182-.977-.054-1.075-.525a.928.928 0 0 1 .045-.51l1.47-3.976L18.066 1.257c.967-.966 2.41-1.09 3.223-.276zM8.904 2.19a1 1 0 1 1 0 2h-4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4a1 1 0 0 1 2 0v4a4 4 0 0 1-4 4h-12a4 4 0 0 1-4-4v-12a4 4 0 0 1 4-4h4z"/></svg>
+
   </div>
 </div>
 
 
 
-<div class="side-menu side-2 md:mt-8 p-6">
-
+<div id="side-menu" class="side-menu side-2 p-6">
   <div *ngIf="logged">
-    <div class="w-full">
-      <img class="side-icon m-auto mt-4" src="https://wallpaperaccess.com/full/22728.jpg" alt="linkup-icon">
-      <br>
-      <p class="m-auto w-3/4">
-        Harley Quinn
+    <div class="text-center mt-6">
+      <img class="side-icon mx-auto" [src]="user.profile_image" alt="linkup-icon">
+      <p class="">
+        {{user.username}}
       </p>
-     </div>
-      <ul class="mt-3">
-        <li>
-        <a routerLink="/home" routerLinkActive="active"> <svg class="icon-home" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7H4Z"/></svg> <span> Home </span></a>
-        </li>
-        <li>
-          <a  [routerLink]="['/user', username]" routerLinkActive="active"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3 21V3h18v18H3Zm15-4H6v1.5h12V17ZM6 15.5h12V14H6v1.5ZM6 12h12V6H6v6Zm0 5v1.5V17Zm0-1.5V14v1.5ZM6 12V6v6Zm0 2v-2v2Zm0 3v-1.5V17Z"/></svg>  <span  class="pop">Your  </span> Posts</a>
-        </li>
-        <li>
-          <a routerLink="/people/following" routerLinkActive="active" > <span class="pop"> 69 </span><span> Following </span></a>
-        </li>
-        <li>
-          <a routerLink="/people/followers" routerLinkActive="active"> <span class="pop">420 </span><span> Followers </span></a>
-        </li>
-        <li>
-          <a routerLink="/users/connect" routerLinkActive="active"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"/></svg> Connect</a>
-        </li>
-        <li>
-          <a routerLink="/settings/profile" routerLinkActive="active">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linejoin="round" d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="7" r="3"/></g></svg>
-            Profile
-            </a>
-        </li>
+    </div>
+    <div class="list">
+        <a routerLink="/home" routerLinkActive="active"> <svg class="icon-home" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7H4Z"/></svg>
+        Home </a>
+
+        <a  [routerLink]="['/user', user.username]" routerLinkActive="active"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3 21V3h18v18H3Zm15-4H6v1.5h12V17ZM6 15.5h12V14H6v1.5ZM6 12h12V6H6v6Zm0 5v1.5V17Zm0-1.5V14v1.5ZM6 12V6v6Zm0 2v-2v2Zm0 3v-1.5V17Z"/></svg>Your Posts</a>
+
+        <a routerLink="/people/following" routerLinkActive="active" >
+          Following
+        </a>
+
+        <a routerLink="/people/followers" routerLinkActive="active">Followers</a>
+
+        <a routerLink="/users/connect" routerLinkActive="active"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"/></svg> Connect</a>
+
+        <a routerLink="/settings/profile" routerLinkActive="active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linejoin="round" d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="7" r="3"/></g></svg>
+          Profile
+          </a>
+      </div>
 
 
-      </ul>
+
+    <button (click)="logout()" class="log-out w-full">
+      <span class="m-auto w-3/4 flex">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m17 8l-1.4 1.4l1.6 1.6H9v2h8.2l-1.6 1.6L17 16l4-4l-4-4M5 5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h7v-2H5V5Z"/></svg>
+      Log Out
+    </span>
+   </button>
 
 
-      <p class="log-out w-full">
-       <span class="m-auto w-3/4 flex">
-       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m17 8l-1.4 1.4l1.6 1.6H9v2h8.2l-1.6 1.6L17 16l4-4l-4-4M5 5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h7v-2H5V5Z"/></svg>
-       Log Out
-     </span>
-      </p>
   </div>
 
-
-   <div class="flex flex-col h-full align-middle gap-8 justify-center" *ngIf="!logged">
-    <a class="button flex justify-center" routerLink="/auth/login"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5l-5-5m9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14Z"/></svg> Log In </a>
-    <a class="button flex justify-center"  routerLink="/auth/register"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5l-5-5m9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14Z"/></svg> Sign Up </a>
-  </div>
+  <div class="text-center flex flex-col h-full align-middle gap-8 justify-center" *ngIf="!logged">
+    <a class="button" routerLink="/home"><svg class="icon-home" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7H4Z"/></svg> Home </a>
+    <a class="button" routerLink="/auth/login"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5l-5-5m9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14Z"/></svg> Log In </a>
+    <a class="button" routerLink="/auth/register"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5l-5-5m9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14Z"/></svg> Sign Up </a>
+   </div>
 
 
 
  </div>
 
-  <form *ngIf="showAddPostForm" class="form p-4 py-4" [formGroup]="addPostForm" (ngSubmit)="addPost()">
+  <form *ngIf="showAddPostForm" class="form p-4 py-4" [formGroup]="addPostForm" (ngSubmit)="addPostFunc()">
     <div class="flex justify-between">
-      <svg (click)="hideAddPostFormFunc()" lass="mt-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z"/></svg>
-      <button class="primary-button py-3 px-8">Post</button>
+      <svg (click)="hideAddPostFormFunc()" lass="mt-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="black" d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z"/></svg>
+      <p *ngIf="loading">
+          {{loading}}
+      </p>
+      <button [disabled]="addPostForm.invalid || form" class="primary-button py-3 px-8">Post</button>
+    </div>
+    <div [class]="messageclass">
+      <p class="p-4">
+        {{message}}
+      </p>
     </div>
     <div class="mt-3">
-      <textarea placeholder="Write Something .." class="p-3 py-6" name="" id="content" cols="30" rows="10" formControlName="content"></textarea>
+      <textarea maxlength="350" placeholder="Write Something .." class="p-3 py-6 textarea" name="" id="content" cols="20" rows="10" formControlName="content"></textarea>
+      <p class="-mt-8 text-color">
+        <small>
+          {{getRemainingCharacters()}} characters remaining
+        </small>
+      </p>
     </div>
-    <div class="mt-3">
-      <label for="post_img">Upload Image(optional)</label>
+    <div class="mt-3 text-color">
+      <label for="image_url">Upload Image(optional)</label>
       <br>
-      <input class="p-3 py-6" id="post_img" type="file" accept="image/*" formControlName="post_img"/>
-    </div>
+      <div class="flex items-center space-x-3">
+        <input class="hidden" id="image_url" type="file" accept="image/*" formControlName="image_url" (change)="uploadImage($event)"/>
 
+        <label for="image_url" class="cursor-pointer p-2 border rounded-lg hover:bg-gray-100">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="black" d="M21 3H3C2 3 1 4 1 5v14a2 2 0 0 0 2 2h18c1 0 2-1 2-2V5c0-1-1-2-2-2M5 17l3.5-4.5l2.5 3l3.5-4.5l4.5 6H5Z"/></svg>
+        </label>
+
+        <div *ngIf="imagePreview" class="flex items-center space-x-2">
+          <img [src]="imagePreview" alt="Image Preview" class="image-preview max-w-28 max-h-28 rounded-lg"/>
+          <button class="text-red-500 cursor-pointer hover:text-red-700" (click)="removeImage()">Remove</button>
+        </div>
+      </div>
+    </div>
   </form>
 
 
 
 
+  <div  class="backdrop backdrop-1" (click)="closeSideMenu()" *ngIf="sideMenuOpen"></div>
+  <div (click)="hideAddPostFormFunc()"  *ngIf="showAddPostForm" class="backdrop backdrop2" ></div>

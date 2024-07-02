@@ -3,8 +3,14 @@ input {
   border: solid 1px var(--bright-orange);
   outline: none;
 }
+<<<<<<< HEAD
 input,button {
   width: 95%;
+=======
+input,button{
+  width: 100%;
+
+>>>>>>> 92690f87cda96e913c0f092a0b14dd8b2872eef1
 }
 
 input{
@@ -14,6 +20,7 @@ input{
 }
 .form{
   background-color: var(--grayish);
+<<<<<<< HEAD
   margin: auto;
 }
 .m-container>div {
@@ -27,4 +34,26 @@ input{
     width: 40vw;
     margin: auto;
   }
+=======
+  width: 90%;
+  height: 90vh;
+  color: var(--black);
+}
+.center{
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+button:disabled{background-color: var(--faint-orange);}
+
+@media screen and (min-width: 768px){
+  .form{
+    width: 40vw;
+    margin: auto;
+    height: 90vh;
+
+
+  }
+
+>>>>>>> 92690f87cda96e913c0f092a0b14dd8b2872eef1
 }

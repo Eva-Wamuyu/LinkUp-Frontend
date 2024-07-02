@@ -1,9 +1,48 @@
-<app-nav></app-nav>
-
+<!-- <app-nav [showSelect]="true" ></app-nav> -->
+<select style="color:var(--black)" *ngIf="logged" class="ml-8" name="" id="" class="border rounded-md p-1 select"[(ngModel)]="selectedOption" name="sortOption">
+  <option value="home">Home</option>
+  <option value="popular">Popular</option>
+  <option value="fyp">FYP</option>
+</select>
 
 <div class="big-container">
-<div  *ngFor="let post of posts">
-    <app-post [post]="post"></app-post>
+
+  <p *ngIf="message" class="pop-up" [class]="className">
+    {{message}}
+  </p>
+  <div class="inner-div">
+<!-- <nav class="flex nav justify-center gap-4">
+  <p class="p" [ngClass]="{'primary-text': activeTab === 'loadPosts'}"  (click)="loadPosts()">
+    For You
+  </p>
+  <p class="p" [ngClass]="{'primary-text': activeTab === 'loadFollowingPosts'}" (click)="loadFollowingPosts()">Following</p>
+</nav> -->
+<div *ngIf="posts.length > 0 else elseBlock">
+  <div  *ngFor="let post of (selectedOption === 'popular' ? (posts | sort:'num_likes') : (posts | sort:'num_comments'))">
+    <app-post [canModify]="canModify(post)" (messageShow)="setMessage($event)"  [post]="post"></app-post>
+</div>
+</div>
+<ng-template  #elseBlock>
+  <div class="flex text-center template align-center mt-8 justify-center flex-col p-8 text-color">
+       <p>
+        it looks like your following stream is empty right now
+       </p>
+       <p>
+        worry less, you can start by following some interesting users through the connect button
+       </p>
+       <a routerLink="/users/connect" class="primary-button w-1/4 m-auto py-2 text-center">Connect </a>
+       <p>
+        Or
+       </p>
+       <p>
+        You can try the
+        For You Tab
+       </p>
+       <p class="primary-button w-1/4 m-auto p py-2 text-center" (click)="loadPosts()">
+           For You
+       </p>
+  </div>
+</ng-template>
 </div>
 <div class="loader-container post-div" *ngIf="loading">
     <img class="loader" src="/assets/4f7c6e1e0f8a4fc0582c342ab414da4.png" alt="">
