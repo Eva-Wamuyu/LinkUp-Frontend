@@ -31,11 +31,9 @@
       <div *ngFor="let user of users | search: letter">
        <a [routerLink]="['/user', user.username]">
         <div class="user-card p-4 text-left">
-<<<<<<< HEAD
+
           <img class="icon" [src]="user?.profile_image" alt="">
-=======
-          <img class="icon" [src]="user.profile_image" alt="">
->>>>>>> 92690f87cda96e913c0f092a0b14dd8b2872eef1
+
           <p class="mt-3 ml-2">
             <b>{{ user.username }}</b>
           </p>

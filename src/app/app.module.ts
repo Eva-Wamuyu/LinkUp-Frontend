@@ -46,7 +46,6 @@ import { SortPipe } from './directives&Pipes/sort.pipe';
     SearchPipe,
     SortPipe,
 
-
   ],
   imports: [
     BrowserModule,

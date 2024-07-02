@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
-import { posts } from 'src/dummy/posts';
+
 import { Post } from 'src/services/interfaces';
 @Component({
   selector: 'app-home',
@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit{
   logged:boolean = false;
   logged_user: string = '';
   selectedOption: string = 'home';
+  loading: boolean = false;
 
   posts: Post[] = [];
 

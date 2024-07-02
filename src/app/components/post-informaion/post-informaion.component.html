@@ -1,9 +1,6 @@
 <!-- <app-nav [showPostForm]="false" ></app-nav> -->
-
 <div class="big-container">
-<<<<<<< HEAD
   <div class="post-div" *ngIf="!post">
-
     <div class="disclaimer p-8 text-center ml-5 my-4">
       <p>
         Post Not Found
@@ -12,261 +9,83 @@
         We looked everywhere, even under the couch, but this post is missing.
       </p>
     </div>
-
-
   </div>
-<ng-container *ngIf="post">
-<app-post [useRouterLink]="false" [post]="post"></app-post>
-=======
+
+  <ng-container *ngIf="post">
+    <app-post [useRouterLink]="false" [post]="post"></app-post>
+  </ng-container>
+
   <div *ngIf="err" class="inner-div">
-    <div class="disclaimer p-8 text-center ml-5 my-4 ">
-      <p>
-        We have a problem!
-        This post seems to be lost in space."
-      </p>
-    </div>
-  </div>
-<div *ngIf="!err" class="inner-div">
->>>>>>> 92690f87cda96e913c0f092a0b14dd8b2872eef1
-
-
-  <div *ngIf="message"  class="pop-up" [class]="className">
-   <p>
-      {{message}}
-   </p>
-  </div>
-  <app-post (messageShow)="setMessage($event)"  [useRouterLink]="false" [post]="post"></app-post>
-</div>
-<!-- <div *ngFor="let post of comments_list" class="comments-container">
-    <app-post [post]="post"></app-post>
- </div> -->
-
-
-<<<<<<< HEAD
-<div class="post-div">
-  <div class="reply-form m-4">
-    <!-- For logged users to be changed with auth present -->
-    <form class="hidden" action="">
-      <textarea class="p-4" placeholder="Add A Comment" name="" id="" cols="10" rows="10"></textarea>
-      <svg class="end" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2z"/></svg>
-    </form>
-  </div>
-  <h2 class="text-left primary-text ml-4 md:ml-0">Replies</h2>
-
- <div *ngFor="let comment of comments_list let i=index" class="comment-container ml-5 p-2 mt-4">
-
-  <a [routerLink]="['/user', comment.username]">
-    <div class="flex items-center">
-        <img class="mr-4 default-icon" [src]="comment.profile_image || 'https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg'" [alt]="post?.username + ' profile image'">
-        <div>
-            <p class="text-lg font-bold">{{comment.username}}</p>
-            <p class="text-sm text-gray-500">
-                <span>{{comment.created_at | date}}</span>
-            </p>
-        </div>
-    </div>
-=======
-<div *ngIf="!err" class="post-div">
-
-  <div *ngIf="logged; else notlogged" class="reply-form my-4 flex justify-center flex-col">
-    <form class="" (ngSubmit)="submitComment(post.post_id)" [formGroup]="addComment">
-      <textarea class="textarea p-4" maxlength="280" placeholder="Add A Reply" name="content" formControlName="content" id="content" cols="10" rows="10"></textarea>
-      <div class="flex justify-between items-center mx-4 bottom">
-        <p>
-          <small class="mr-2 text-color"> {{getRemainingCharacters()}} remaining</small>
-        </p>
-        <button class="primary-button p-2.5" [disabled]="addComment.invalid">
-          Add reply
-        </button>
-      </div>
-    </form>
-  </div>
-  <ng-template #notlogged>
     <div class="disclaimer p-8 text-center ml-5 my-4">
       <p>
-        Login To Reply
+        We have a problem!
+        This post seems to be lost in space.
       </p>
-
-    </div>
-  </ng-template>
-
-  <h2 class="text-left primary-text ml-4">Replies</h2>
- <div *ngFor="let comment of comments; let i=index" class="comment-container ml-5 p-2 mt-4">
-  <a [routerLink]="['/user', comment.username]">
-      <div class="user-info d-flex flex-left font-bold">
-        <a [routerLink]="['/user', comment.username]">
-        <img class="default-icon" [src]="comment.profile_image" alt="">
-        </a>
-       <p class="ml-4">
-        <a [routerLink]="['/user', comment.username]">
-        <b>{{comment.username}}</b>
-        </a>
-        <br>
-        <b>
-        <span>
-            {{comment.created_at | date: 'short' :'+0300'}}
-        </span>
-        </b>
-      </p>
-      </div>
->>>>>>> 92690f87cda96e913c0f092a0b14dd8b2872eef1
-  </a>
-    <div>
-      <p class="w3-margin-top">
-          {{comment.content}}
-      </p>
-      <div class="d-flex flex-left mt-6 mx-4">
-        <p class="flex">
-<<<<<<< HEAD
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 20H9v-8H4.16L12 4.16L19.84 12H15v8Z"/></svg>
-          <span>
-            {{comment.likes_count}}
-          </span>
-        </p>
-        <p class="flex">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path fill="currentColor" d="M1.5 0C.671 0 0 .67 0 1.5v8.993c0 .83.671 1.5 1.5 1.5h3.732l1.852 2.775a.5.5 0 0 0 .832 0l1.851-2.775H13.5c.829 0 1.5-.67 1.5-1.5V1.5c0-.83-.671-1.5-1.5-1.5h-12Z"/></svg>
-          <span>
-            {{comment.subcomments?.length}}
-=======
-            <svg  *ngIf="!comment.has_liked" (click)="likeFunc(comment.comment_id)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 20H9v-8H4.16L12 4.16L19.84 12H15v8Z"/></svg>
-            <svg  *ngIf="comment.has_liked" (click)="likeFunc(comment.comment_id)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="red" d="M15 20H9v-8H4.16L12 4.16L19.84 12H15v8Z"/></svg>
-            {{comment.likes_count}}
-        </p>
-        <p class="flex">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path fill="currentColor" d="M1.5 0C.671 0 0 .67 0 1.5v8.993c0 .83.671 1.5 1.5 1.5h3.732l1.852 2.775a.5.5 0 0 0 .832 0l1.851-2.775H13.5c.829 0 1.5-.67 1.5-1.5V1.5c0-.83-.671-1.5-1.5-1.5h-12Z"/></svg>
-          <span *ngIf="comment.subcomments">
-            {{comment.subcomments.length}}
-          </span>
-          <span *ngIf="!comment.subcomments">
-            0
->>>>>>> 92690f87cda96e913c0f092a0b14dd8b2872eef1
-          </span>
-        </p>
-        <p>
-          <svg (click)="toggleReplyForm(i)" class="comment-button-" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 9V7.41c0-.89-1.08-1.34-1.71-.71L3.7 11.29a.996.996 0 0 0 0 1.41l4.59 4.59c.63.63 1.71.19 1.71-.7V14.9c5 0 8.5 1.6 11 5.1c-1-5-4-10-11-11z"/></svg>
-        </p>
-
-
-
-      </div>
-
-<<<<<<< HEAD
-      <form *ngIf="showCommentForm[i]">
-        <p>Replying to {{ comment.username }}'s comment:</p>
-        <textarea class="p-4" placeholder="Add A Comment" name="" id="" cols="10" rows="10"></textarea>
-        <button type="button" (click)="cancelReplyForm(comment.comment_id)">Cancel</button>
-        <button type="submit">Post</button>
-      </form>
-
-
-
-      <div  class="child-comment-container ml-8 p-4" *ngIf="comment?.subcomments">
-        <div *ngFor="let comment of comment?.subcomments">
-        <div class="user-info d-flex flex-left font-bold">
-          <img class="default-icon" src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQ7xetZazndXzsY-Wos8xN576trcmTX8gHc3wunT8NOh6a03Svy2LrQhrMvV7NVzbEkyXliR9pSMbuwO_4" alt="">
-=======
-      <div *ngIf="logged; else cannotcomment">
-        <form [formGroup]="addSubCommentForm" (ngSubmit)="submitSubComment(comment.comment_id)" class="comment-form mt-4 border" *ngIf="showCommentForm[i]">
-          <p>Replying to {{ comment.username }}'s reply:
-             <!-- <button type="button" (click)="cancelReplyForm(comment.comment_id)">Cancel</button> -->
-            </p>
-          <div class="comment-form-row mt-2">
-            <input maxlength="280" formControlName="content" placeholder="Add A sub reply" class="comment-input " type="text" name="" id="">
-            <button [disabled]="addSubCommentForm.invalid" class="comment-button">
-              <svg class="comment-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2z"/>
-              </svg>
-            </button>
-          </div>
-        </form>
-      </div>
-      <ng-template #cannotcomment>
-        <div *ngIf="showCommentForm[i]">
-          <p class="disclaimer p-8 text-center ml-5 my-4">
-            Log in to add subreply
-          </p>
-        </div>
-      </ng-template>
-
-
-
-
-
-
-
-
-
-
-      <div  class="child-comment-container ml-8 p-4" *ngIf="comment.subcomments">
-        <div *ngFor="let comment of comment.subcomments">
-        <div class="user-info d-flex flex-left font-bold my-8">
-          <a [routerLink]="['/user', comment.username]">
-          <img class="default-icon" [src]="comment.profile_image" alt="">
-          </a>
->>>>>>> 92690f87cda96e913c0f092a0b14dd8b2872eef1
-         <p>
-          <a [routerLink]="['/user', comment.username]">
-          <b>{{comment.username}}</b>
-          <br>
-         </a>
-          <b>
-          <span>
-<<<<<<< HEAD
-            {{comment.created_at | date}}
-=======
-            {{comment.created_at| date: 'short' :'+0300'}}
->>>>>>> 92690f87cda96e913c0f092a0b14dd8b2872eef1
-          </span>
-          </b>
-        </p>
-      </div>
-
-      <div>
-        <p class="w3-margin-top ml-6">
-            {{comment.content}}
-        </p>
-        <div class="flex w-1/2 flex-left  mt-6 mx-8 border-bottom">
-          <p class="flex">
-            <svg  *ngIf="!comment.has_liked" (click)="likeFunc(comment.comment_id)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 20H9v-8H4.16L12 4.16L19.84 12H15v8Z"/></svg>
-            <svg  *ngIf="comment.has_liked" (click)="likeFunc(comment.comment_id)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="red" d="M15 20H9v-8H4.16L12 4.16L19.84 12H15v8Z"/></svg>
-            {{comment.likes_count}}
-          </p>
-          <p>
-            <span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 256 256"><path fill="currentColor" d="m232.49 112.49l-48 48a12 12 0 0 1-17-17L195 116h-30a84 84 0 0 0-81.36 63a12 12 0 1 1-23.24-6A107.94 107.94 0 0 1 165 92h30l-27.49-27.52a12 12 0 0 1 17-17l48 48a12 12 0 0 1-.02 17.01ZM192 204H44V88a12 12 0 0 0-24 0v120a20 20 0 0 0 20 20h152a12 12 0 0 0 0-24Z"/></svg>
-            </span>
-          </p>
-        </div>
-      </div>
-    </div>
     </div>
   </div>
 
+  <div *ngIf="!err" class="inner-div">
+    <!-- <div *ngFor="let post of comments_list" class="comments-container">
+      <app-post [post]="post"></app-post>
+    </div> -->
+
+    <div class="post-div">
+      <div class="reply-form m-4">
+        <!-- For logged users to be changed with auth present -->
+        <form class="hidden" action="">
+          <textarea class="p-4" placeholder="Add A Comment" name="" id="" cols="10" rows="10"></textarea>
+          <svg class="end" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2z"/></svg>
+        </form>
+      </div>
+      <h2 class="text-left primary-text ml-4 md:ml-0">Replies</h2>
+
+      <div *ngFor="let comment of comments_list; let i = index" class="comment-container ml-5 p-2 mt-4">
+        <a [routerLink]="['/user', comment.username]">
+          <div class="flex items-center">
+            <img class="mr-4 default-icon" [src]="comment.profile_image || 'https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg'" [alt]="comment.username + ' profile image'">
+            <div>
+              <p class="text-lg font-bold">{{comment.username}}</p>
+              <p class="text-sm text-gray-500">
+                <span>{{comment.created_at | date}}</span>
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <div *ngIf="!err" class="post-div">
+          <div *ngIf="logged; else notlogged" class="reply-form my-4 flex justify-center flex-col">
+            <form class="" (ngSubmit)="submitComment(post?.post_id)" [formGroup]="addComment">
+              <textarea class="textarea p-4" maxlength="280" placeholder="Add A Reply" name="content" formControlName="content" id="content" cols="10" rows="10"></textarea>
+              <div class="flex justify-between items-center mx-4 bottom">
+                <p>
+                  <small class="mr-2 text-color"> {{getRemainingCharacters()}} remaining</small>
+                </p>
+                <button class="primary-button p-2.5" [disabled]="addComment.invalid">
+                  Add reply
+                </button>
+              </div>
+            </form>
+          </div>
+          <ng-template #notlogged>
+            <div class="disclaimer p-8 text-center ml-5 my-4">
+              <p>
+                Login To Reply
+              </p>
+            </div>
+          </ng-template>
+        </div>
+
+        <form *ngIf="showCommentForm[i]" (ngSubmit)="submitReply(comment.comment_id)">
+          <p>Replying to {{ comment.username }}'s comment:</p>
+          <textarea class="p-4" placeholder="Add A Reply" name="content" formControlName="content" id="content" cols="10" rows="10"></textarea>
+          <div class="flex justify-between items-center mx-4 mt-4">
+            <p><small class="mr-2 text-color">{{ getRemainingCharacters() }} remaining</small></p>
+            <button type="button" (click)="cancelReplyForm(i)">Cancel</button>
+            <button type="submit" class="primary-button p-2.5" [disabled]="addComment.invalid">Post Reply</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
 </div>
-
-<div *ngIf="comments_list.length == 0">
-  <p class="disclaimer p-8 text-center ml-5 my-4">
-        Be The first to reply to this post
-  </p>
-</div>
-
-<div *ngIf="comments.length == 0">
-  <p class="disclaimer p-8 text-center ml-5 my-4">
-        Be The first to reply to this post
-  </p>
-</div>
-
-</div>
-<<<<<<< HEAD
-</ng-container>
-</div>
-
-=======
-</div>
->>>>>>> 92690f87cda96e913c0f092a0b14dd8b2872eef1
-
-
-
-
-
-

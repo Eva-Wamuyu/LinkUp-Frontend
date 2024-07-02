@@ -18,7 +18,6 @@ export class PostInformaionComponent implements OnInit{
     private auth: AuthServiceService) { }
   post_id!: string;
   showCommentForm: boolean[] = [];
-
   comments: Comment[] = [];
   addComment!: FormGroup
   addSubCommentForm!: FormGroup
@@ -27,17 +26,8 @@ export class PostInformaionComponent implements OnInit{
   logged: boolean = false;
   err:boolean = false;
 
-
-
   post?: Post;
   comments_list! :Comment[];
-
-
-
-
-
-
-
 
   toggleReplyForm(index: number) {
     this.showCommentForm = this.showCommentForm.map((_value, i) => i === index);
@@ -85,7 +75,8 @@ export class PostInformaionComponent implements OnInit{
   }
 
 
-  submitComment = (post_id: string) => {
+  submitComment = (post_id?: string) => {
+    if(post_id)
     this.apiservice.addComment(post_id, this.addComment.value)
       .pipe(
         catchError((err: any) => {
@@ -113,7 +104,7 @@ export class PostInformaionComponent implements OnInit{
 
 
 
-  submitSubComment = (comment_id: number) => {
+  submitReply = (comment_id: number) => {
     this.apiservice.addSubComment(comment_id, this.addSubCommentForm.value).pipe(
       catchError(error => {
         this.message = error.error.message;

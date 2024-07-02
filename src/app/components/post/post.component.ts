@@ -11,7 +11,7 @@ import { Post } from 'src/app/services/interfaces';
 export class PostComponent {
 
   constructor(private api: ApiServiceService){}
-  @Input() post?: Post
+  @Input() post?: Post;
   @Input() canModify:boolean = false;
   @Input() useRouterLink: boolean = true;
   @Input()  showButton: boolean = true;

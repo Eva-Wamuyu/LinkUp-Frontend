@@ -19,13 +19,17 @@ export interface CreatePost{
 export interface Post extends CreatePost{
   readonly post_id: string,
   readonly username: string,
-  created_at: string,
-  num_likes: number,
-  num_comments: number,
-  image_url_post: string,
-  image_url_user: string,
-  has_liked: boolean,
-  comments?: Comment[]
+//   created_at: string,
+    date: string,
+// num_likes: number
+    likes: number,
+    comments: number,
+//   num_comments: number
+    image_url_post?: string,
+    image_url_user?: string,
+    has_liked?: boolean,
+    comments_list?: Comment[]
+//   comments: Comment[]
 
 }
 export interface Comment{
