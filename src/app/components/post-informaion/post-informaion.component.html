@@ -30,26 +30,20 @@
       <svg class="end" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2z"/></svg>
     </form>
   </div>
-  <h2 class="text-left primary-text">Replies</h2>
-  
+  <h2 class="text-left primary-text ml-4 md:ml-0">Replies</h2>
+
  <div *ngFor="let comment of comments_list let i=index" class="comment-container ml-5 p-2 mt-4">
 
-  <a [routerLink]="['/user', post.username]">
-      <div class="user-info d-flex flex-left font-bold">
-        <img class="default-icon" src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQ7xetZazndXzsY-Wos8xN576trcmTX8gHc3wunT8NOh6a03Svy2LrQhrMvV7NVzbEkyXliR9pSMbuwO_4" alt="">
-       <p class="ml-4">
-        <b>{{comment.username}}</b>
-        <br>
-        <b>
-        <span>
-          {{comment.created_at}}
-        </span>
-        <span>
-          1730hrs
-        </span>
-        </b>
-      </p>
-      </div>
+  <a [routerLink]="['/user', comment.username]">
+    <div class="flex items-center">
+        <img class="mr-4 default-icon" [src]="comment.profile_image || 'https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg'" [alt]="post?.username + ' profile image'">
+        <div>
+            <p class="text-lg font-bold">{{comment.username}}</p>
+            <p class="text-sm text-gray-500">
+                <span>{{comment.created_at | date}}</span>
+            </p>
+        </div>
+    </div>
   </a>
     <div>
       <p class="w3-margin-top">

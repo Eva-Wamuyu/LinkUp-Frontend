@@ -3,7 +3,7 @@
 
 <div class="big-container ">
 
-  <div class="user-info-div m-container pt-4" *ngIf="!userInfo">
+  <div class="user-info-div m-container md:pt-4" *ngIf="!userInfo">
     <div class="info p-8 my-4 text-center disclaimer text-color">
       <p>
         Username not found in this dimension.
@@ -13,13 +13,13 @@
       </p>
     </div>
   </div>
-  <div class="user-info-div m-container pt-4" *ngIf="userInfo">
+  <div class="user-info-div m-container md:pt-4" *ngIf="userInfo">
   <div *ngIf="!(username ==logged_user)" class="top-div py-16 px-8">
     <img  class="icon img" [src]="userInfo.profile_image || 'https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg'" [alt]="userInfo.username + 'profile image'">
 
      <h2> {{userInfo.username}}</h2>
 
-     <button class="primary-button px-12 py-3">Follow</button>
+     <button  class="primary-button px-12 py-3" disabled>Follow</button>
   </div>
 
   <nav class="flex justify-between px-16 mt-4 py-4">
