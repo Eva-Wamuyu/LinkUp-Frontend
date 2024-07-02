@@ -1,43 +1,30 @@
-input{
+
+input {
   border: solid 1px var(--bright-orange);
   outline: none;
 }
-input,button{
+input,button {
   width: 95%;
-
-
-
 }
 
 input{
   height: 36px;
   font-size: 1.5rem;
   border-radius: var(--smooth-edges);
-
 }
 .form{
   background-color: var(--grayish);
   margin: auto;
-
-
 }
-.m-container>div{
+.m-container>div {
   width: 90vw;
   margin: auto;
   max-height: 100vh;
-
 }
 
-
-@media screen and (min-width: 768px){
+@media screen and (min-width: 768px) {
   .form{
     width: 40vw;
     margin: auto;
-
   }
-
-
-
-
 }
-
