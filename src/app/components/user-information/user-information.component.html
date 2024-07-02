@@ -23,45 +23,39 @@
   </div>
 
   <nav class="flex justify-between px-16 mt-4 py-4">
-      <p [className]="{'active': viewabout}"  (click)="showAbout()">
+      <p [ngClass]="{'active': viewabout}"  (click)="showAbout()">
         About
       </p>
-      <p  [className]="{'active': viewpost}" (click)="showPosts()">
+      <p  [ngClass]="{'active': viewpost}" (click)="showPosts()">
         Posts
       </p>
   </nav>
 
 
   <div *ngIf="viewabout" class="about">
-     <div class="">
-        <div class="flex justify-around mt-4">
-          <p>
-            {{userInfo.followers}}
-            <br>
-            Followers
-          </p>
-
-          <p>
-            {{userInfo.following}}
-            <br>
-            Following
-          </p>
+    <div>
+      <div class="flex justify-around mt-4">
+          <div class="text-center">
+              <p class="text-l font-bold">{{userInfo.followers}}</p>
+              <p class="text-xs text-gray-500">Followers</p>
+          </div>
+          <div class="text-center">
+              <p class="text-l font-bold">{{userInfo.following}}</p>
+              <p class="text-xs text-gray-500">Following</p>
+          </div>
+      </div>
+      <div class="flex justify-around mt-4">
+        <div class="text-center">
+            <p class="text-l font-bold">{{userInfo.joined_at}}</p>
+            <p class="text-xs text-gray-500">Launch</p>
         </div>
+        <div class="text-center">
+          <p class="text-l font-bold">{{posts.length}}</p>
+          <p class="text-xs text-gray-500">Posts</p>
+      </div>
+    </div>
+  </div>
 
-        <div class="flex justify-around mt-4">
-          <p>
-            {{posts.length}}
-            <br>
-            Posts
-          </p>
-
-          <p>
-            12/12/2023
-            <br>
-            Joined
-          </p>
-        </div>
-     </div>
 
      <div class="bio px-16 py-12 my-4">
       <svg class="pin ml-8" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M28.586 13.314L30 11.9L20 2l-1.314 1.415l1.186 1.186L8.38 14.322l-1.716-1.715L5.25 14l5.657 5.677L2 28.583L3.41 30l8.911-8.909L18 26.748l1.393-1.414l-1.716-1.716l9.724-11.49Z"/></svg>

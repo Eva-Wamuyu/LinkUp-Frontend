@@ -50,7 +50,7 @@ background-color: var(--faint-orange);
 height: fit-content;
 }
 .active{
-color: red;
+color: var(--bright-orange);
 border-bottom: 1px solid var(--bright-orange);
 }
 .primary-button:disabled{

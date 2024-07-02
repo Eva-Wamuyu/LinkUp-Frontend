@@ -47,7 +47,8 @@ export const posts: Post[] = [
       comments: 3,
       date: "4/14/2023",
       content: "In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
-      image_url: "http://dummyimage.com/183x100.png/dddddd/000000"
+      image_url: "http://dummyimage.com/183x100.png/dddddd/000000",
+      image_url_user: "https://res.cloudinary.com/dbddkobs4/image/upload/v1694112421/download_a9n1un.jpg"
     },
     {
       post_id: "e770d6d0-0dba-45e7-8ba4-b5ca5d1f39c5",
@@ -102,6 +103,7 @@ export const posts: Post[] = [
       likes: 8,
       comments: 8,
       date: "6/14/2023",
+      image_url_user:"https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg",
       content: "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
       image_url: "http://dummyimage.com/238x100.png/5fa2dd/ffffff"
     },
@@ -253,7 +255,8 @@ export const posts: Post[] = [
       comments: 20,
       date: "7/2/2023",
       content: "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
-      image_url: "http://dummyimage.com/181x100.png/5fa2dd/ffffff"
+      image_url: "http://dummyimage.com/181x100.png/5fa2dd/ffffff",
+      image_url_user: "http://dummyimage.com/108x100.png/cc0000/ffffff"
+
     }
 ];
-  
