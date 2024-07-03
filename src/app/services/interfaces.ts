@@ -1,5 +1,5 @@
-// export const BASE_URL  = 'http://localhost:3000/'
-export const BASE_URL = 'https://wamuyu-linkup-api.azurewebsites.net/'
+export const BASE_URL  = 'http://localhost:3000/'
+//export const BASE_URL = 'https://wamuyu-linkup-api.azurewebsites.net/'
 
 export interface RegisterDetails{
   usernames: string
@@ -19,8 +19,7 @@ export interface CreatePost{
 export interface Post extends CreatePost{
   readonly post_id: string,
   readonly username: string,
-//   created_at: string,
-    date: string,
+  created_at: string,
 // num_likes: number
     likes: number,
     comments: number,

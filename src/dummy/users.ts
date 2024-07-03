@@ -1,4 +1,4 @@
-import { UserDetails } from "src/services/interfaces";
+import { UserDetails } from "src/app/services/interfaces";
 
   export const users: UserDetails[] = [
     {

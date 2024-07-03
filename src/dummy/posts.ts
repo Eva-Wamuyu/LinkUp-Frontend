@@ -1,12 +1,11 @@
-import { Post } from "src/services/interfaces";
-
+import { Post } from "src/app/services/interfaces";
 export const posts: Post[] = [
     {
       post_id: "86c84ab9-6e59-46a9-a93b-e6cd52a0a4bc",
       username: "mweld0",
       likes: 1,
       comments: 1,
-      date: "4/26/2023",
+      created_at: "4/26/2023",
       content: "In congue. Etiam justo. Etiam pretium iaculis justo.",
       image_url: "http://dummyimage.com/147x100.png/cc0000/ffffff",
       image_url_user: "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQ7xetZazndXzsY-Wos8xN576trcmTX8gHc3wunT8NOh6a03Svy2LrQhrMvV7NVzbEkyXliR9pSMbuwO_4",
@@ -16,7 +15,7 @@ export const posts: Post[] = [
       username: "tdannett1",
       likes: 2,
       comments: 2,
-      date: "3/10/2023",
+      created_at: "3/10/2023",
       content: "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
       image_url_user: "http://dummyimage.com/108x100.png/cc0000/ffffff",
       comments_list: [
@@ -45,7 +44,7 @@ export const posts: Post[] = [
       username: "ndrover2",
       likes: 3,
       comments: 3,
-      date: "4/14/2023",
+      created_at: "4/14/2023",
       content: "In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
       image_url: "http://dummyimage.com/183x100.png/dddddd/000000",
       image_url_user: "https://res.cloudinary.com/dbddkobs4/image/upload/v1694112421/download_a9n1un.jpg"
@@ -55,7 +54,7 @@ export const posts: Post[] = [
       username: "zmcruvie3",
       likes: 4,
       comments: 4,
-      date: "6/27/2023",
+      created_at: "6/27/2023",
       content: "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
       image_url: "http://dummyimage.com/193x100.png/cc0000/ffffff"
     },
@@ -64,7 +63,7 @@ export const posts: Post[] = [
       username: "coubridge4",
       likes: 5,
       comments: 5,
-      date: "3/18/2023",
+      created_at: "3/18/2023",
       content: "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
       image_url: "http://dummyimage.com/139x100.png/dddddd/000000",
       comments_list: [
@@ -84,7 +83,7 @@ export const posts: Post[] = [
       username: "rraynes5",
       likes: 6,
       comments: 6,
-      date: "8/13/2023",
+      created_at: "8/13/2023",
       content: "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
       image_url: "http://dummyimage.com/155x100.png/ff4444/ffffff"
     },
@@ -93,7 +92,7 @@ export const posts: Post[] = [
       username: "ekytley6",
       likes: 7,
       comments: 7,
-      date: "1/31/2023",
+      created_at: "1/31/2023",
       content: "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
       image_url: "http://dummyimage.com/175x100.png/cc0000/ffffff"
     },
@@ -102,7 +101,7 @@ export const posts: Post[] = [
       username: "fcuxson7",
       likes: 8,
       comments: 8,
-      date: "6/14/2023",
+      created_at: "6/14/2023",
       image_url_user:"https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg",
       content: "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
       image_url: "http://dummyimage.com/238x100.png/5fa2dd/ffffff"
@@ -112,7 +111,7 @@ export const posts: Post[] = [
       username: "dducker8",
       likes: 9,
       comments: 9,
-      date: "5/30/2023",
+      created_at: "5/30/2023",
       content: "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
       image_url: "http://dummyimage.com/165x100.png/ff4444/ffffff"
     },
@@ -121,7 +120,7 @@ export const posts: Post[] = [
       username: "tmcnuff9",
       likes: 10,
       comments: 10,
-      date: "7/15/2023",
+      created_at: "7/15/2023",
       content: "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
       image_url: "http://dummyimage.com/103x100.png/dddddd/000000",
       comments_list: [
@@ -162,7 +161,7 @@ export const posts: Post[] = [
       username: "ouglowa",
       likes: 11,
       comments: 11,
-      date: "8/22/2023",
+      created_at: "8/22/2023",
       content: "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
       image_url: "http://dummyimage.com/118x100.png/dddddd/000000"
     },
@@ -171,7 +170,7 @@ export const posts: Post[] = [
       username: "sekinsb",
       likes: 12,
       comments: 12,
-      date: "7/5/2023",
+      created_at: "7/5/2023",
       content: "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
       image_url: "http://dummyimage.com/215x100.png/5fa2dd/ffffff"
     },
@@ -180,7 +179,7 @@ export const posts: Post[] = [
       username: "tchatbandc",
       likes: 13,
       comments: 13,
-      date: "6/14/2023",
+      created_at: "6/14/2023",
       content: "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
       image_url: "http://dummyimage.com/236x100.png/5fa2dd/ffffff"
     },
@@ -189,7 +188,7 @@ export const posts: Post[] = [
       username: "lbrozssetd",
       likes: 14,
       comments: 14,
-      date: "2/3/2023",
+      created_at: "2/3/2023",
       content: "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
       image_url: "http://dummyimage.com/119x100.png/dddddd/000000"
     },
@@ -198,7 +197,7 @@ export const posts: Post[] = [
       username: "ailchuke",
       likes: 15,
       comments: 15,
-      date: "11/8/2022",
+      created_at: "11/8/2022",
       content: "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
       image_url: "http://dummyimage.com/215x100.png/cc0000/ffffff"
     },
@@ -207,7 +206,7 @@ export const posts: Post[] = [
       username: "cpinillaf",
       likes: 16,
       comments: 16,
-      date: "2/24/2023",
+      created_at: "2/24/2023",
       content: "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
       image_url: "http://dummyimage.com/205x100.png/ff4444/ffffff"
     },
@@ -216,7 +215,7 @@ export const posts: Post[] = [
       username: "abollandg",
       likes: 17,
       comments: 17,
-      date: "2/21/2023",
+      created_at: "2/21/2023",
       content: "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
       image_url: "http://dummyimage.com/138x100.png/5fa2dd/ffffff",
       comments_list: [
@@ -236,7 +235,7 @@ export const posts: Post[] = [
       username: "mgravesh",
       likes: 18,
       comments: 18,
-      date: "6/7/2023",
+      created_at: "6/7/2023",
       content: "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
       image_url: "http://dummyimage.com/118x100.png/dddddd/000000"
     },
@@ -245,7 +244,7 @@ export const posts: Post[] = [
       username: "rwoolandi",
       likes: 19,
       comments: 19,
-      date: "2/18/2023",
+      created_at: "2/18/2023",
       content: "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
     },
     {
@@ -253,7 +252,7 @@ export const posts: Post[] = [
       username: "gadranj",
       likes: 20,
       comments: 20,
-      date: "7/2/2023",
+      created_at: "7/2/2023",
       content: "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
       image_url: "http://dummyimage.com/181x100.png/5fa2dd/ffffff",
       image_url_user: "http://dummyimage.com/108x100.png/cc0000/ffffff"

@@ -1,7 +1,5 @@
 <!-- <app-nav (setCurrentUserEvent)="currentUserEvent($event)"></app-nav> -->
 
-<app-nav></app-nav>
-
 <div class="big-container ">
 
   <div class="user-info-div m-container md:pt-4" *ngIf="!userInfo">
@@ -47,11 +45,11 @@
       </div>
       <div class="flex justify-around mt-4">
         <div class="text-center">
-            <p class="text-l font-bold">{{userInfo.joined_at}}</p>
+            <p class="text-l font-bold">{{userInfo.joined_at | date}}</p>
             <p class="text-xs text-gray-500">Launch</p>
         </div>
         <div class="text-center">
-          <p class="text-l font-bold">{{posts.length}}</p>
+          <p class="text-l font-bold">{{userInfo.posts}}</p>
           <p class="text-xs text-gray-500">Posts</p>
       </div>
     </div>
@@ -87,7 +85,29 @@
 
 
 
+  </div>
+
+  <div *ngIf="viewpost">
+    <div *ngIf="posts">
+      <div class="posts">
+        <div  *ngFor="let post of posts">
+          <app-post [post]="post"></app-post>
+       </div>
+      </div>
     </div>
+
+    <div *ngIf="posts.length==0">
+       <div class="info p-8 my-4 text-center">
+           <p>
+            Oh! Seems like {{username}} Is a Silent Scroller
+           </p>
+           <p>
+            Come Back Later When They Decide To Post sth
+           </p>
+       </div>
+    </div>
+
+  </div>
 
 
     </div>

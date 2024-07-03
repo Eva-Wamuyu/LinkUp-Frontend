@@ -27,7 +27,6 @@ export class UserInformationComponent implements OnInit {
   logged_user:string = ''
   posts: Post[] = []
   userInfo? : UserDetails;
-  user?: UserDetails;
   message: string = ''
   className: string = ''
   logged: boolean = false;
@@ -52,7 +51,7 @@ export class UserInformationComponent implements OnInit {
         else{
           this.getAbout();
         }
-    }
+  }
 
   showPosts = ()=>{
     this.viewpost = true;
@@ -80,7 +79,7 @@ export class UserInformationComponent implements OnInit {
       }
       return of(null);
     })).subscribe((res)=>{
-      this.user = res.user[0];
+      this.userInfo = res.user[0];
     });
     }
 
@@ -92,7 +91,7 @@ export class UserInformationComponent implements OnInit {
             return [];
           })
           ).subscribe((data)=>{
-        this.posts = data.posts
+        this.posts = data.posts;
       });
     }
 

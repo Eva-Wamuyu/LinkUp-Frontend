@@ -1,8 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
-
-import { Post } from 'src/services/interfaces';
+import { Post } from 'src/app/services/interfaces';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -21,7 +20,7 @@ export class HomeComponent implements OnInit{
   posts: Post[] = [];
 
   ngOnInit(): void {
-    this.logged = this.auth.credSet().islogged;
+    // this.logged = this.auth.credSet().islogged;
 
     this.loadPosts();
   }
@@ -64,6 +63,19 @@ export class HomeComponent implements OnInit{
 
     return shuffledArray;
   }
+
+  // @HostListener('document:scroll', ['$event'])
+  // // Smallscreens only as at now
+  // onScroll($event:Event): void {
+  //   const windowHeight = window.innerHeight;
+  //   const scrollY = window.scrollY;
+  //   const bodyHeight = document.body.offsetHeight;
+  //   const distanceFromBottom = bodyHeight - (scrollY + windowHeight);
+
+  //   if (distanceFromBottom < 100 && !this.loading) {
+  //     this.loadPosts();
+  //   }
+  // }
 
 }
 

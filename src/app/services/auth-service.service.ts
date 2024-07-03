@@ -3,11 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RegisterDetails, LoginDetails, BASE_URL } from './interfaces';
 import { Observable, catchError } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
+  //BASE_URL = environment.BASE_URL;
+  BASE_URL = BASE_URL;
   private logged = false;
   private loggedUser = '';
 
@@ -15,11 +18,11 @@ export class AuthServiceService {
   constructor(private http: HttpClient,private router: Router) { }
 
   RegisterService(creds: RegisterDetails): Observable<any> {
-    return this.http.post(`${BASE_URL}user/auth/register`, creds);
+    return this.http.post(`${this.BASE_URL}user/auth/register`, creds);
   }
 
   LoginService(creds: LoginDetails): Observable<any> {
-    return this.http.post(`${BASE_URL}user/auth/login`, creds);
+    return this.http.post(`${this.BASE_URL}user/auth/login`, creds);
   }
 
 
@@ -30,7 +33,7 @@ export class AuthServiceService {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       });
-      this.http.post(`${BASE_URL}user/auth/check`, {}, { headers }).pipe(
+      this.http.post(`${this.BASE_URL}user/auth/check`, {}, { headers }).pipe(
         catchError((err: any) => {
           this.logged = false;
           this.loggedUser = '';
