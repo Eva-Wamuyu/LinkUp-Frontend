@@ -1,63 +1,54 @@
-<!-- <app-nav  [showPostForm]="false" ></app-nav> -->
+<!-- <app-nav [showPostForm]="false"></app-nav> -->
 
-<div class="big-container">
-  <div class="inner-div m-container">
-      <h2 class="mt-4 w-2/3">Your Current Info
-      </h2>
-      <div class="top-div p-4 m-0 ">
-        <div class="pop-up" [ngClass]="messageClass">
+<div class="flex items-center justify-center">
+  <div class="p-4 max-w-4xl w-full">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Your Current Info</h2>
+    <div class="flex flex-col md:flex-row md:space-x-6">
+      <div class="flex flex-col items-center md:w-1/3 mb-6 md:mb-0">
+        <div class="mb-4">
+          <img class="w-24 h-24 rounded-full object-cover shadow-md" id="image_url" [src]="user.profile_image" [alt]="user.username">
+        </div>
+        <p class="text-lg font-semibold text-gray-700">{{user.username}}</p>
+        <div class="flex space-x-4 mt-4">
+          <a routerLink="/people/followers" class="text-primary hover:underline">{{user.followers}} Followers</a>
+          <a routerLink="/people/following" class="text-primary hover:underline">{{user.following}} Following</a>
+        </div>
+        <div class="flex space-x-4 mt-2">
+          <a [routerLink]="['/user', user.username]" class="text-primary hover:underline">{{user.posts}} Posts</a>
+          <span class="text-gray-600">{{user.joined_at | date: 'dd/MM/yyyy'}}</span>
+        </div>
+      </div>
+      <div class="flex-1 p-4">
+        <div class="p-2 rounded-md mb-4" [ngClass]="messageClass" *ngIf="message">
           <p>{{message}}</p>
         </div>
-        <div class="w-1/2 justify-between items-center">
-          <img class="img" id="image_url" [src]="user.profile_image" [alt]="user.username">
-          <p style="color:var(--black)">
-           <b>{{user.username}}</b>
-          </p>
+        <div>
+          <h3 class="text-xl font-semibold text-gray-700 mb-4">Edit Information</h3>
+          <form [formGroup]="editUserInformationForm" (ngSubmit)="editUserInfoFunc()">
+            <div class="mb-4">
+              <label for="user_bio" class="block text-gray-700">Bio</label>
+              <textarea id="user_bio" rows="5" class="w-full p-3 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" formControlName="bio"></textarea>
+            </div>
+            <div class="mb-4">
+              <label for="profile_image" class="block text-gray-700">Impresario (Profile picture)</label>
+              <div class="mt-2 flex items-center">
+                <input id="profile_image" type="file" accept="image/*" class="hidden" (change)="uploadImageF($event)" formControlName="profile_image"/>
+                <label for="profile_image" class="cursor-pointer flex items-center justify-center px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm text-gray-700 bg-white hover:bg-gray-50">
+                  <span>Select Image</span>
+                </label>
+                <div *ngIf="imagePreview" class="ml-4">
+                  <img [src]="imagePreview" alt="Image Preview" class="w-24 h-24 object-cover rounded-md shadow-md">
+                </div>
+              </div>
+            </div>
+            <div>
+              <button [disabled]="editUserInformationForm.pristine" type="submit" class="w-full py-3 px-4 bg-primary text-white font-semibold rounded-md shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                Update Details
+              </button>
+            </div>
+          </form>
         </div>
-         <div class="mt-4 w-3/4">
-          <p style="color:var(--black)" class="flex justify-between">
-           <a routerLink="/people/followers">
-            {{user.followers}}Followers
-           </a>
-           <a routerLink="/people/following">
-            {{user.following}}Following
-           </a>
-          </p>
-          <p style="color:var(--black)" class="flex justify-between">
-            <a  [routerLink]="['/user', user.username]" >
-              {{user.posts}}Posts
-            </a>
-            <span>{{user.joined_at | date: 'dd/MM/yyyy'}}</span>
-          </p>
-         </div>
       </div>
-    <div class="edit-div p-4">
-        <p>
-          Edit
-        </p>
-        <form class="form " [formGroup]="editUserInformationForm" (ngSubmit)="editUserInfoFunc()">
-          <div class="mt-4">
-            <label for="user_bio">Bio</label>
-            <br>
-            <textarea id="user_bio" rows="5" cols="10" class="p-3 py-6" id="user_bio" formControlName="bio"> </textarea>
-          </div>
-          <div class="mt-8">
-            <label for="profile_image">Impresario (Profile picture)</label>
-            <br>
-           <div class="image-input p-3 py-6 text-center">
-            <input class="" id="profile_image" type="file" accept="image/*" (change)="uploadImageF($event)" formControlName="profile_image"/>
-            <img [src]="imagePreview" alt="Image Preview" *ngIf="imagePreview" class="mt-3 img-preview">
-           </div>
-          </div>
-          <div class="mt-8">
-            <button [disabled]="editUserInformationForm.pristine" type="submit" class="primary-button py-3 mt-4">
-               Update Details
-            </button>
-          </div>
-
-
-
-      </form>
     </div>
   </div>
 </div>
