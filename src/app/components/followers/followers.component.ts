@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { catchError, of } from 'rxjs';
+import { catchError, EMPTY } from 'rxjs';
 import { ApiServiceService } from 'src/app/services/api-service.service';
+import { FollowingUser } from 'src/app/services/interfaces';
 
 @Component({
   selector: 'app-followers',
@@ -9,7 +10,7 @@ import { ApiServiceService } from 'src/app/services/api-service.service';
 })
 export class FollowersComponent {
   message:string = 'followers';
-  users: any[] = [];
+  users: FollowingUser[] = [];
   searchTerm: string = '';
 
 
@@ -32,7 +33,7 @@ export class FollowersComponent {
           } else {
             console.log('Error', error);
           }
-          return of(null);
+          return EMPTY;
         })
       )
       .subscribe(res => {

@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 // import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { catchError, of } from 'rxjs';
+import { catchError, EMPTY, of } from 'rxjs';
 import { ApiServiceService } from 'src/app/services/api-service.service';
+import { FollowingUser } from 'src/app/services/interfaces';
 // import { takeUntil, filter } from 'rxjs/operators';
 
 @Component({
@@ -12,7 +13,7 @@ import { ApiServiceService } from 'src/app/services/api-service.service';
 })
 export class FollowingComponent implements OnInit {
   message:string = 'following';
-  users: any[] = [];
+  users: FollowingUser[] = [];
   searchTerm: string = '';
 
   constructor(
@@ -34,7 +35,7 @@ export class FollowingComponent implements OnInit {
           } else {
             console.log('Error', error);
           }
-          return of(null);
+          return EMPTY;
         })
       )
       .subscribe(res => {

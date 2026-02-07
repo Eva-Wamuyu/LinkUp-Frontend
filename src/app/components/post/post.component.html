@@ -1,4 +1,5 @@
-<div class="m-container post-div pt-4 border-bottom">
+<ng-container *ngIf="post; else empty">
+  <div class="m-container post-div pt-4 border-bottom">
   <div class="">
     <div class="flex justify-between font-bold">
       <div class="flex">
@@ -95,5 +96,12 @@
     <div class=""></div>
 
     <div class="backdrop" (click)="showDialog = false" *ngIf="showDialog"></div>
+</div>
+</ng-container>
+<ng-template #empty>
+<div class="flex text-center template align-center mt-8 justify-center flex-col p-8 text-color">
+       <p>
+        it looks like this post has wandered away or something went wrong.
+       </p>
 </div>
 

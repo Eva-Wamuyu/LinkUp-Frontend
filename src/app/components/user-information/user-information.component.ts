@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, of } from 'rxjs';
+import { catchError, EMPTY, of } from 'rxjs';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { Post, UserDetails } from 'src/app/services/interfaces';
@@ -89,7 +89,7 @@ export class UserInformationComponent implements OnInit {
       else{
             console.log("Error",error)
       }
-      return of(null);
+      return EMPTY;
     })).subscribe((res)=>{
       this.user = res.user[0];
     });

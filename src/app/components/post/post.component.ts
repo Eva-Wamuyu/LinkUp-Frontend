@@ -11,17 +11,8 @@ import { Post } from 'src/app/services/interfaces';
 export class PostComponent {
 
   constructor(private api: ApiServiceService){}
-  @Input() post: Post = {
-    content: '',
-    image_url_post: '',
-    post_id: '',
-    created_at: '',
-    num_likes: 0,
-    num_comments: 0,
-    has_liked: false,
-    username: '',
-    image_url_user: ''
-  };
+  @Input() post: Post | null = null;
+
   @Input() canModify:boolean = false;
   @Input() useRouterLink: boolean = true;
   @Input()  showButton: boolean = true;

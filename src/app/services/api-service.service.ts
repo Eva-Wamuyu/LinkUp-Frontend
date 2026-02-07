@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { BASE_URL, Mail, Post, Profile } from './interfaces';
+import { CreatePost, Mail, Post, Profile } from './interfaces';
 import { Observable, catchError, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AddPostResponse, FetchPostResponse, FetchPostsResponse } from '../types/post';
+import { ConnectResponse, FetchFollowersResponse, FetchFollowingResponse, FetchUserProfileResponse, ProfileResponse } from '../types/user';
 
 
 @Injectable({
@@ -10,111 +12,110 @@ import { environment } from 'src/environments/environment';
 })
 export class ApiServiceService {
   constructor(private http: HttpClient) { }
-  private getHeaders(): HttpHeaders {
+  private createHttpOptions(): { headers: HttpHeaders } {
     const token = localStorage.getItem('token') || '';
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
   }
 
 
-  fetchPosts():Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.get(`${BASE_URL}post`,options)
-   }
-
-   fetchPostDetails(post_id:string):Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.get(`${BASE_URL}post/${post_id}`,options)
-   }
-
-   fetchUserDetails(username:string):Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.get(`${BASE_URL}user/${username}`,options)
-   }
-
-
-   fetchUserFollowers():Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.get(`${BASE_URL}follow/followers/users`,options)
-   }
-
-   fetchUserFollowing():Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.get(`${BASE_URL}follow/following/users`,options)
-   }
-
-   fetchUsers():Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.get(`${BASE_URL}user/all/connect`,options)
-   }
-
-   fetchUserPosts(username:string):Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.get(`${BASE_URL}post/user/${username}`,options)
-   }
-
-
-
-  addPost(post:any):Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.post(`${BASE_URL}post`,post,options)
-   }
-
-  getProfile():Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.get(`${BASE_URL}user/info/profile`,options)
+  public get<T>(endpoint: string, options?: { headers: HttpHeaders }): Observable<T> {
+    const url = `${environment.BASE_URL}${endpoint}`;
+    return this.http.get<T>(url, options || this.createHttpOptions());
   }
 
-  editProfile(user_info:Profile):Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.patch(`${BASE_URL}user/`,user_info,options)
-
+  public post<TResponse, TBody>(endpoint: string, body: TBody, options?: { headers: HttpHeaders }): Observable<TResponse> {
+    const url = `${environment.BASE_URL}${endpoint}`;
+    return this.http.post<TResponse>(url, body, options || this.createHttpOptions());
   }
 
-
-  addComment(post_id:string, commentBody:any):Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.post(`${BASE_URL}post/${post_id}/comment`,commentBody,options)
+  public patch<TResponse, TBody>(endpoint: string, body: TBody, options?: { headers: HttpHeaders }): Observable<TResponse> {
+    const url = `${environment.BASE_URL}${endpoint}`;
+    return this.http.patch<TResponse>(url, body, options || this.createHttpOptions());
   }
 
-   addSubComment(comment_id:number, commentBody:any):Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.post(`${BASE_URL}post/comment/${comment_id}`,commentBody,options)
-   }
+  public delete<T>(endpoint: string, options?: { headers: HttpHeaders }): Observable<T> {
+    const url = `${environment.BASE_URL}${endpoint}`;
+    return this.http.delete<T>(url, options || this.createHttpOptions());
+  }
 
-   getUserComments(username:string):Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.get(`${BASE_URL}post/comment/user/${username}`,options)
-   }
+  fetchPosts(): Observable<FetchPostsResponse> {
+    return this.get('post');
+  }
 
-   editComment(comment_id:number, content:any):Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.patch(`${BASE_URL}post/comment/${comment_id}`,content,options)
-   }
+  fetchPostDetails(post_id: string): Observable<FetchPostResponse> {
+    return this.get(`post/${post_id}`);
+  }
 
-   deleteComment(comment_id: number):Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.delete(`${BASE_URL}post/comment/${comment_id}`,options)
-   }
+  fetchUserDetails(username: string): Observable<FetchUserProfileResponse> {
+    return this.get(`user/${username}`);
+  }
 
-   likePostService(post_id:string):Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.post(`${BASE_URL}like/post/${post_id}`,{body:""},options)
-   }
+  fetchUserFollowers(): Observable<FetchFollowersResponse> {
+    return this.get('follow/followers/users');
+  }
 
-   likeCommentService(comment_id:number):Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.post(`${BASE_URL}like/comment/${comment_id}`,{body:""},options)
-   }
+  fetchUserFollowing(): Observable<FetchFollowingResponse> {
+    return this.get('follow/following/users');
+  }
 
-   followUserService(user_id:string):Observable<any>{
-    const options = { headers: this.getHeaders() };
-    return this.http.post(`${BASE_URL}follow/${user_id}`,{body:""},options)
-   }
+  fetchUsers(): Observable<ConnectResponse> {
+    return this.get('user/all/connect');
+  }
 
-   uploadImage(file: File): Observable<string> {
+  fetchUserPosts(username: string): Observable<FetchPostsResponse> {
+    return this.get(`post/user/${username}`);
+  }
+
+  addPost(post: CreatePost): Observable<AddPostResponse> {
+    return this.post('post', post);
+  }
+
+  getProfile(): Observable<ProfileResponse> {
+    return this.get('user/info/profile');
+  }
+
+  editProfile(user_info: Profile): Observable<{message: string}> {
+    return this.patch('user/', user_info);
+  }
+
+  addComment(post_id: string, commentBody: {content: string}): Observable<{message: string}> {
+    return this.post(`post/${post_id}/comment`, commentBody);
+  }
+
+  addSubComment(comment_id: number, commentBody: {content: string}): Observable<{message: string}> {
+    return this.post(`post/comment/${comment_id}`, commentBody);
+  }
+
+  getUserComments(username: string): Observable<{comments: Comment[]}> {
+    return this.get(`post/comment/user/${username}`);
+  }
+
+  editComment(comment_id: number, content: string): Observable<{message: string}> {
+    return this.patch(`post/comment/${comment_id}`, content);
+  }
+
+  deleteComment(comment_id: number): Observable<{message: string}> {
+    return this.delete(`post/comment/${comment_id}`);
+  }
+
+  likePostService(post_id: string): Observable<{message: string}> {
+    return this.post(`like/post/${post_id}`, { body: "" });
+  }
+
+  likeCommentService(comment_id: number): Observable<{message: string}> {
+    return this.post(`like/comment/${comment_id}`, { body: "" });
+  }
+
+  followUserService(user_id: string): Observable<{message: string}> {
+    return this.post(`follow/${user_id}`, { body: "" });
+  }
+
+  uploadImage(file: File): Observable<string> {
     const cloudname = environment.cloudname;
      console.log(file)
     const formData = new FormData();
@@ -134,32 +135,25 @@ export class ApiServiceService {
       );
       }
 
-      resetPassword(email:Mail): Observable<any>{
-        let headers =  new HttpHeaders({
-          'Content-Type': 'application/json',
-        });
-        let options = {headers}
-        return this.http.post(`${BASE_URL}user/auth/reset`,{email},options)
-      }
+  resetPassword(email: Mail): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    const options = {headers};
+    return this.http.post(`${environment.BASE_URL}user/auth/reset`, { email }, options);
+  }
 
-      updatePassword(token:string,password:string) : Observable<any>{
-        let headers =  new HttpHeaders({
-          'Content-Type': 'application/json',
-        });
-        let options = {headers}
-        return this.http.post(`${BASE_URL}user/auth/reset/${token}`,{password},options)
-      }
+  updatePassword(token: string, password: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    const options = { headers };
+    return this.http.post(`${environment.BASE_URL}user/auth/reset/${token}`, { password }, options);
+  }
 
-
-
-      deletePost(post_id:string): Observable<any>{
-        const options = { headers: this.getHeaders() };
-        return this.http.delete(`${BASE_URL}post/${post_id}/`,options)
-      }
-
-
-
-
+  deletePost(post_id: string): Observable<{message: string}> {
+    return this.delete(`post/${post_id}/`);
+  }
 }
 
 

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RegisterDetails, LoginDetails, BASE_URL } from './interfaces';
+import { RegisterDetails, LoginDetails } from './interfaces';
 import { Observable, catchError } from 'rxjs';
 import { Router } from '@angular/router';
+import { ApiServiceService } from './api-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,37 +13,36 @@ export class AuthServiceService {
   private loggedUser = '';
 
 
-  constructor(private http: HttpClient,private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private apiService: ApiServiceService) { }
 
   RegisterService(creds: RegisterDetails): Observable<any> {
-    return this.http.post(`${BASE_URL}user/auth/register`, creds);
+    return this.apiService.post('user/auth/register', creds);
   }
 
   LoginService(creds: LoginDetails): Observable<any> {
-    return this.http.post(`${BASE_URL}user/auth/login`, creds);
+    return this.apiService.post('user/auth/login', creds);
   }
 
 
-  checkToken(callback: (loggedIn: boolean,username:string) => void) {
+  checkToken(callback: (loggedIn: boolean, username: string) => void) {
     const token = localStorage.getItem('token');
     if (token) {
-      let headers = new HttpHeaders({
+      const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       });
-      this.http.post(`${BASE_URL}user/auth/check`, {}, { headers }).pipe(
+      this.apiService.post('user/auth/check', {}, { headers }).pipe(
         catchError((err: any) => {
           this.logged = false;
           this.loggedUser = '';
           return [];
         })
       ).subscribe(
-        (res:any) => {
-
+        (res: any) => {
           if (res) {
-          let username = res.user.username;
+            const username = res.user.username;
             this.setLogged(username);
-            callback(this.logged,this.loggedUser);
+            callback(this.logged, this.loggedUser);
           } else {
             this.logged = false;
             callback(this.logged,'');

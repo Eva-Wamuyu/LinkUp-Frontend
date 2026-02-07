@@ -16,20 +16,10 @@ import { Post,Comment } from 'src/app/services/interfaces';
 export class PostInformaionComponent implements OnInit{
 
   constructor(private route: ActivatedRoute, private apiservice: ApiServiceService,
-    private auth: AuthServiceService) { }
+  private auth: AuthServiceService) { }
   post_id!: string;
   showCommentForm: boolean[] = [];
-  post: Post = {
-    content: '',
-    image_url_post: '',
-    post_id: '',
-    created_at: '',
-    num_likes: 0,
-    num_comments: 0,
-    has_liked: false,
-    username: '',
-    image_url_user: ''
-  };
+  post: Post | null = null;
   comments: Comment[] = [];
   addComment!: FormGroup
   addSubCommentForm!: FormGroup
@@ -37,6 +27,7 @@ export class PostInformaionComponent implements OnInit{
   className: string = "";
   logged: boolean = false;
   err:boolean = false;
+  loading = false;
 
 
 
@@ -64,11 +55,13 @@ export class PostInformaionComponent implements OnInit{
 
 
   getDetails = ()=>{
+    this.loading = true;
     this.post_id = this.route.snapshot.paramMap.get('post_id') || "";
     this.apiservice.fetchPostDetails(this.post_id).pipe(
-      catchError((err:any)=>{
+      catchError((err:Error)=>{
 
         this.err = true;
+        this.loading = false;
         return []
       })
     )
@@ -80,6 +73,7 @@ export class PostInformaionComponent implements OnInit{
             if (res.comments) {
               this.comments = res.comments.map((comment:any) => comment.comment);
             }
+            this.loading = false;
         this.showCommentForm = Array(this.comments.length).fill(false);
       }
     )

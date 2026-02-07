@@ -13,7 +13,7 @@ export interface LoginDetails{
 }
 export interface CreatePost{
   content:string,
-  image_url?: string
+  image_url: string | null
 }
 
 export interface Post extends CreatePost{
@@ -72,3 +72,11 @@ export interface Mail{
 export interface Password{
   password: string
 }
+export interface FollowingUser{
+  user_id: string,
+  username: string,
+  profile_image: string,
+  follows_back: boolean
+
+}
+export type FollowerUser = FollowingUser;

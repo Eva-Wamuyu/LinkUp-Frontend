@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiServiceService } from 'src/app/services/api-service.service';
-import { UserDetails } from 'src/app/services/interfaces';
+import { CreatePost, UserDetails } from 'src/app/services/interfaces';
 import { environment } from 'src/environments/environment';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { catchError } from 'rxjs';
@@ -143,7 +143,7 @@ export class NavComponent implements OnInit{
     const content = this.addPostForm.value.content;
     const image_url = this.cloudinary || null;
     console.log(image_url)
-    const post = {
+    let post: CreatePost = {
       content,
       image_url,
     };
